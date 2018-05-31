@@ -6,8 +6,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LogoComponent } from './components/logo/logo.component';
+import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
+
 import { RegistrationComponent } from './pages/registration/registration.component';
+import { HomeComponent } from './pages/home/home.component';
 
 import { UserService } from './services/user/user.service';
 import { ValidationService } from './services/validation/validation.service';
@@ -18,7 +21,9 @@ import { ValidationService } from './services/validation/validation.service';
     AppComponent,
     LogoComponent,
     HeaderComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,8 @@ import { ValidationService } from './services/validation/validation.service';
     HttpClientModule,
     RouterModule.forRoot(
       [
-        { path: 'register', component: RegistrationComponent}
+        { path: '', component: HomeComponent },
+        { path: 'register', component: RegistrationComponent }
       ]
     )
   ],
