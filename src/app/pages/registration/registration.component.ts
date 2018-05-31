@@ -3,7 +3,6 @@ import { UserService } from '../../services/user/user.service';
 import { ValidationService } from '../../services/validation/validation.service';
 
 @Component({
-  selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
@@ -24,12 +23,15 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  submit(event) {
-    event.preventDefaults();
+  submitRegistration(event) {
+    event.preventDefault();
 
     const registrationData = this.registrationData;
 
-    const email = registrationData['email'].trim();
+    let email = registrationData['email'];
+    if ( email.length ) {
+      email = email.trim();
+    }
 
     const valuesArray = [registrationData['email'], registrationData['password'], registrationData['confirmPassword']];
 
@@ -38,14 +40,18 @@ export class RegistrationComponent implements OnInit {
     }
 
     if (!this.validationService.emailValidation(email)) {
-      return registrationData['email'] = 'Please enter a valid email address';
+      return registrationData['message'] = 'Please enter a valid email address';
+    }
+
+    if (registrationData['password'] !== registrationData['confirmPassword']) {
+      return registrationData['message'] = 'Please check that both password fields match';
     }
 
 
+
     this.userService.registerUser(this.registrationData)
-    .toPromise()
-    .then((data) => { console.log(data); })
-    .catch((err) => { console.log(err); });
+      .then((data) => { console.log(data); })
+      .catch((err) => { console.log(err); });
   }
 
 }
