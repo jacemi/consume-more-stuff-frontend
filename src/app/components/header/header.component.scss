@@ -1,0 +1,11 @@
+#headerWrap{
+  display: flex;
+  flex-direction: row;
+
+  background-color: steelblue;
+  
+  #appTitle{
+    font-size: 80px;
+    color: white;
+  }
+}
