@@ -4,11 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { HeaderComponent } from './components/header/header.component';
-<<<<<<< HEAD
 import { RegistrationComponent } from './pages/registration/registration.component';
-=======
+
 import { UserService } from './services/user/user.service';
->>>>>>> development
+
 
 @NgModule({
   declarations: [
