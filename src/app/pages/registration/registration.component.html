@@ -1,16 +1,20 @@
 <h2>Register:</h2>
 
 <form>
+    <label for="email">Email: </label>
+    <input type="text" name="email" placeholder="Input email here" [(ngModel)]="registrationData.email"><br>
 
-    <input type="text" name="email" placeholder="Email:" [(ngModel)]="registrationData.email"><br>
+    <label for="password">Password: </label>
+    <input type="password" name="password" placeholder="Input password here" [(ngModel)]="registrationData.password"><br>
 
-    <input type="password" name="password" placeholder="Password:" [(ngModel)]="registrationData.password"><br>
-
-    <input type="password" name="confirmPassword" placeholder="Confirm password:" [(ngModel)]="registrationData.confirmPassword"><br>
-
+    <label for="confirmPassword">Confirm password: </label>
+    <input type="password" name="confirmPassword" placeholder="Confirm password here" [(ngModel)]="registrationData.confirmPassword"><br>
 
 
-    <button (click)="submit($event)">Submit</button>
+
+    <button (click)="submitRegistration($event)">Submit</button>
 </form>
+
 <br><br>
+
 {{ registrationData.message }}
