@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { HeaderComponent } from './components/header/header.component';
+import { UserService } from './services/user/user.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    UserService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
