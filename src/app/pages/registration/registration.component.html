@@ -1,0 +1,16 @@
+<h2>Register:</h2>
+
+<form>
+
+    <input type="text" name="email" placeholder="Email:" [(ngModel)]="registrationData.email"><br>
+
+    <input type="password" name="password" placeholder="Password:" [(ngModel)]="registrationData.password"><br>
+
+    <input type="password" name="confirmPassword" placeholder="Confirm password:" [(ngModel)]="registrationData.confirmPassword"><br>
+
+
+
+    <button (click)="submit($event)">Submit</button>
+</form>
+<br><br>
+{{ registrationData.message }}
