@@ -1,0 +1,20 @@
+.sidebar {
+  padding: 0;
+  margin: 15px 0 15px 15px;
+  list-style-type: none;
+  background-color: #eee;
+
+  li {
+      display: inline-block;
+      margin-right: 20px;
+  }
+
+  a { 
+      text-decoration: none; 
+      color: #333; 
+      
+      &.active {
+          color: gold;
+      }
+  }
+}

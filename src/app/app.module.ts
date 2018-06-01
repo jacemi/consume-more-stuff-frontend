@@ -16,6 +16,7 @@ import { ItemService } from './services/item/item.service';
 import { UserService } from './services/user/user.service';
 import { ValidationService } from './services/validation/validation.service';
 import { NewItemComponent } from './pages/new-item/new-item.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { NewItemComponent } from './pages/new-item/new-item.component';
     RegistrationComponent,
     HomeComponent,
     LoginComponent,
-    NewItemComponent
+    NewItemComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

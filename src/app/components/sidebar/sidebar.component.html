@@ -1,0 +1,25 @@
+<ul class="sidebar" *ngIf="!loginData.online">
+    <li>
+      <h2>
+        <a routerLink="/home">Home</a>
+      </h2>
+    </li>
+    <li>
+        <h2>
+          <a routerLink="/messages">Messages</a>
+        </h2>
+      </li>
+    <li>
+        <h2>
+          <a routerLink="/settings">Settings</a>
+        </h2>
+      </li>
+  </ul>
+<ul class="userSidebar" *ngIf="loginData.online">
+  <li>
+    <h2>
+      <a routerLink="/home">Home</a>
+    </h2>
+  </li>
+</ul>
+
