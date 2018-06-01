@@ -12,8 +12,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { HomeComponent } from './pages/home/home.component';
 
+import { ItemService } from './services/item/item.service';
 import { UserService } from './services/user/user.service';
 import { ValidationService } from './services/validation/validation.service';
+import { NewItemComponent } from './pages/new-item/new-item.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { ValidationService } from './services/validation/validation.service';
     HeaderComponent,
     RegistrationComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    NewItemComponent
   ],
   imports: [
     BrowserModule,
@@ -32,11 +35,13 @@ import { ValidationService } from './services/validation/validation.service';
     RouterModule.forRoot(
       [
         { path: '', component: HomeComponent },
-        { path: 'register', component: RegistrationComponent }
+        { path: 'register', component: RegistrationComponent },
+        { path: 'new-item', component: NewItemComponent }
       ]
     )
   ],
   providers: [
+    ItemService,
     UserService,
     ValidationService
   ],
