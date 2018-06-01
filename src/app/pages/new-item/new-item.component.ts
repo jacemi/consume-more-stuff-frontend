@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ItemService } from '../../services/item/item.service';
+import { CategoriesService } from '../../services/categories/categories.service';
+import { ConditionsService } from '../../services/conditions/conditions.service';
 import { ValidationService } from '../../services/validation/validation.service';
 
 @Component({
@@ -20,28 +22,16 @@ export class NewItemComponent {
     status_id: 1,
     message: ''
   };
-  categories: Array<any> = [];
-  conditions: Array<any> = [];
+  categories: Object = this.categoriesService.categories;
+  conditions: Object = this.conditionsService.conditions;
 
   constructor(
     private router: Router,
+    private conditionsService: ConditionsService,
+    private categoriesService: CategoriesService,
     private itemService: ItemService,
     private validationService: ValidationService
-  ) {
-
-    this.itemService.fetchCategories()
-    .then((result: Array<any>) => {
-      this.categories = result;
-    });
-
-    this.itemService.fetchConditions()
-    .then((result: Array<any>) => {
-      this.conditions = result;
-    });
-
-}
-
-
+  ) { }
   submitNewItem(event) {
     event.preventDefault();
 
