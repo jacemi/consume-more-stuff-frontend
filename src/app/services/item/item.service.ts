@@ -23,10 +23,13 @@ export class ItemService {
     poster: {},
     status: {}
   };
+  // categories: Array<any>;
+  // conditions: Array<any>;
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   fetchAllItems() {
     return this.http.get('/api/items')
@@ -47,6 +50,7 @@ export class ItemService {
 
   publishItem(data) {
     console.log('Publishing item...');
+    console.log(data);
     return this.http.post('/api/items', data)
       .toPromise()
       .then((item) => {
@@ -97,4 +101,37 @@ export class ItemService {
       });
     }
 
+    fetchCategories() {
+      return this.http.get('/api/categories')
+      .toPromise()
+      .then((categories) => {
+        if (!categories) {
+          const error = new Error();
+          error['status'] = 500;
+          throw error;
+        }
+
+        return categories;
+      })
+      .catch((err) => {
+        throw err;
+      });
+    }
+
+    fetchConditions() {
+      return this.http.get('/api/conditions')
+      .toPromise()
+      .then((conditions) => {
+        if (!conditions) {
+          const error = new Error();
+          error['status'] = 500;
+          throw error;
+        }
+
+        return conditions;
+      })
+      .catch((err) => {
+        throw err;
+      });
+    }
 }
