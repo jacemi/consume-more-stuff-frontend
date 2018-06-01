@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,27 @@ export class UserService {
   constructor(
     private router: Router,
     private http: HttpClient,
-  ) { }
+  ) {
+    this.getUser();
+  }
+
+
+  getUser() {
+    let user = localStorage.getItem('user');
+    user = JSON.parse(user);
+    console.log(this);
+
+    if (!user) {
+      this.router.navigateByUrl('/');
+      return false;
+    }
+
+    this.user['online'] = true;
+    this.user['id'] = user['id'];
+    this.user['email'] = user['email'];
+
+    return true;
+  }
 
   registerUser(data) {
     console.log('Registering user...');
@@ -40,18 +61,7 @@ export class UserService {
     this.user['email'] = data['email'];
 
     localStorage.setItem('user', JSON.stringify(this.user));
-    return;
-  }
-
-  getUser() {
-    const user = localStorage.getItem('user');
-
-    if (!user) {
-      this.router.navigateByUrl('/');
-      return false;
-    }
-
-    return true;
+    return data;
   }
 
   loginUser(data) {
@@ -65,6 +75,21 @@ export class UserService {
       })
       .catch((err) => {
         throw err;
+      });
+  }
+
+  logoutUser() {
+    this.user['online'] = false;
+    this.user['id'] = '';
+    this.user['email'] = '';
+    this.http.get('/api/users/logout')
+      .toPromise()
+      .then(() => {
+        return localStorage.removeItem('user');
+      })
+      .catch((err) => {
+        console.log(err);
+        return;
       });
   }
 }
