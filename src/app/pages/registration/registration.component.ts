@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { UserService } from '../../services/user/user.service';
 import { ValidationService } from '../../services/validation/validation.service';
 
@@ -15,6 +17,7 @@ export class RegistrationComponent implements OnInit {
   };
 
   constructor(
+    private router: Router,
     private userService: UserService,
     private validationService: ValidationService
   ) { }
@@ -29,7 +32,7 @@ export class RegistrationComponent implements OnInit {
     const registrationData = this.registrationData;
 
     let email = registrationData['email'];
-    if ( email.length ) {
+    if (email.length) {
       email = email.trim();
     }
 
@@ -50,8 +53,13 @@ export class RegistrationComponent implements OnInit {
 
 
     this.userService.registerUser(this.registrationData)
-      .then((data) => { console.log(data); })
-      .catch((err) => { console.log(err); });
+      .then((data) => {
+        return this.router.navigateByUrl('/');
+      })
+      .catch((err) => {
+        console.log(err);
+        return;
+      });
   }
 
 }
