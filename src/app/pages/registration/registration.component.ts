@@ -8,7 +8,7 @@ import { ValidationService } from '../../services/validation/validation.service'
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
   registrationData: Object = {
     email: '',
     password: '',
@@ -21,10 +21,6 @@ export class RegistrationComponent implements OnInit {
     private userService: UserService,
     private validationService: ValidationService
   ) { }
-
-  ngOnInit() {
-
-  }
 
   submitRegistration(event) {
     event.preventDefault();
