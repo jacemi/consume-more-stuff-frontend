@@ -9,12 +9,10 @@ export class ConditionsService {
   conditions: Object = {
     conditions: [],
   };
+
   constructor(
     private http: HttpClient,
-  ) {
-    this.fetchConditions();
-
-  }
+  ) { }
 
   fetchConditions() {
     return this.http.get('/api/conditions')
