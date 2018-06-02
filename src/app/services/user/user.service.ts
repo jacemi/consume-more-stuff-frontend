@@ -26,7 +26,7 @@ export class UserService {
     console.log(this);
 
     if (!user) {
-      this.router.navigateByUrl('/');
+      // this.router.navigateByUrl('/');
       return false;
     }
 
