@@ -6,12 +6,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CategoriesService {
   categories: Object = {
-    categories: [],
+    categories: []
   };
-
+  selectedCategory: Object = {
+    selectedCategory: {}
+  };
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {
+  }
 
   fetchCategories() {
     return this.http.get('/api/categories')
@@ -24,6 +27,23 @@ export class CategoriesService {
         }
         this.categories['categories'] = categories;
         return categories;
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  fetchCategoryById(id) {
+    return this.http.get(`/api/categories/${id}`)
+      .toPromise()
+      .then((category: Object) => {
+        if (!category) {
+          const error = new Error();
+          error['status'] = 500;
+          throw error;
+        }
+        this.selectedCategory['selectedCategory'] = category;
+        return category;
       })
       .catch((err) => {
         throw err;

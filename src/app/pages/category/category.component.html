@@ -1,0 +1,7 @@
+<h2>{{category.selectedCategory.name}}</h2>
+<div class="itemCard" *ngFor="let item of category.selectedCategory.items">
+    <a routerLink="/items/{{item.id}}">
+      <h4>Description: {{item.description}}</h4>
+      <h4>Published on: {{item.created_at}}</h4>
+    </a>
+  </div>

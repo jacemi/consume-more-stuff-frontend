@@ -1,0 +1,14 @@
+<div class="sidebar">
+  <h3 id="homeLink">
+    <a routerLink="/home">Home</a>
+  </h3>
+  <h3>Categories</h3>
+  <ul class="categoryList">
+    <li *ngFor="let category of categories.categories">
+      <h4>
+        <a routerLink="/item/category/{{category.id}}">
+          {{ category.name }}</a>
+      </h4>
+    </li>
+  </ul>
+</div>

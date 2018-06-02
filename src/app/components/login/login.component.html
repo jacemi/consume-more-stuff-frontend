@@ -10,6 +10,7 @@
 
   <button (click)="loginUser($event)">Login</button>
 </form>
+<button *ngIf="!loginData.online" routerLink="/register">Register</button>
 
 <div *ngIf="loginData.online">
   Welcome! {{loginData.email}}
