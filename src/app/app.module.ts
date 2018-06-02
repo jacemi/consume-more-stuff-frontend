@@ -43,9 +43,10 @@ import { ValidationService } from './services/validation/validation.service';
     RouterModule.forRoot(
       [
         { path: '', component: HomeComponent },
+        { path: 'home', component: HomeComponent },
         { path: 'register', component: RegistrationComponent },
         { path: 'new-item', component: NewItemComponent },
-        { path: 'category/:id', component: CategoryComponent}
+        { path: 'item/category/:id', component: CategoryComponent}
       ]
     )
   ],
