@@ -8,11 +8,10 @@ export class CategoriesService {
   categories: Object = {
     categories: [],
   };
+
   constructor(
     private http: HttpClient,
-  ) {
-    this.fetchCategories();
-  }
+  ) { }
 
   fetchCategories() {
     return this.http.get('/api/categories')

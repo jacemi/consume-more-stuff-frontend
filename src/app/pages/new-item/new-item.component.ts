@@ -32,6 +32,7 @@ export class NewItemComponent {
     private itemService: ItemService,
     private validationService: ValidationService
   ) { }
+
   submitNewItem(event) {
     event.preventDefault();
 
