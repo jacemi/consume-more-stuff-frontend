@@ -1,16 +1,41 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { CategoriesService } from '../../services/categories/categories.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
-
   constructor(
+    private categoriesService: CategoriesService,
     private http: HttpClient
   ) { }
 
-  fetchAllItems() {
+  categories: Object = this.categoriesService.categories;
+  data: Object = {};
+
+
+  fetchTenItems(categories) {
+    categories.forEach((category) => {
+      return this.http.get(`/api/items?category_id=${category.id}&limit=10`)
+        .toPromise()
+        .then((items: Array<any>) => {
+          if (!items) {
+            const error = new Error();
+            error['status'] = 500;
+            throw error;
+          }
+          this.data[category.name] = items;
+          return items;
+        })
+        .catch((err) => {
+          throw err;
+        });
+    });
+  }
+
+  fetchAllItems(categoryId) {
     return this.http.get('/api/items')
       .toPromise()
       .then((items) => {
@@ -77,4 +102,4 @@ export class ItemService {
         throw err;
       });
   }
-
+}
