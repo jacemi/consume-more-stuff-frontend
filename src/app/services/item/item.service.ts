@@ -13,44 +13,7 @@ export class ItemService {
   ) { }
 
   categories: Object = this.categoriesService.categories;
-  data: Object = {};
-
-
-  fetchTenItems(categories) {
-    categories.forEach((category) => {
-      return this.http.get(`/api/items?category_id=${category.id}&limit=10`)
-        .toPromise()
-        .then((items: Array<any>) => {
-          if (!items) {
-            const error = new Error();
-            error['status'] = 500;
-            throw error;
-          }
-          this.data[category.name] = items;
-          return items;
-        })
-        .catch((err) => {
-          throw err;
-        });
-    });
-  }
-
-  fetchAllItems(categoryId) {
-    return this.http.get('/api/items')
-      .toPromise()
-      .then((items) => {
-        if (!items) {
-          const error = new Error();
-          error['status'] = 500;
-          throw error;
-        }
-
-        return items;
-      })
-      .catch((err) => {
-        throw err;
-      });
-  }
+  itemData: Object = {};
 
   publishItem(data) {
     return this.http.post('/api/items', data)
@@ -78,7 +41,7 @@ export class ItemService {
           error['status'] = 500;
           throw error;
         }
-
+        this.itemData['itemData'] = item;
         return item;
       })
       .catch((err) => {

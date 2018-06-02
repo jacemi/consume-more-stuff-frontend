@@ -1,3 +1,12 @@
-<p>
-  detail works!
-</p>
+<div *ngIf="!author" id="detailCardWrap">
+  <h2>description: {{item.itemData.description}}</h2>
+  <h4>manufacterer: {{item.itemData.manufacturer}}</h4>
+  <h4>model: {{item.itemData.model}}</h4>
+  <h4>price: {{item.itemData.price}}</h4>
+  <h4>category: {{item.itemData.category_id}}</h4>
+  <h4>condition: {{item.itemData.condition_id}}</h4>
+  <h4>dimensions: {{item.itemData.dimensions}}</h4>
+  <h4>published: {{item.itemData.created_at}}</h4>
+  <h4>updated: {{item.itemData.updated_at}}</h4>
+  <h4>detail: {{item.itemData.detail}}</h4>
+</div>
