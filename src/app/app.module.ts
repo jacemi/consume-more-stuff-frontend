@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NewItemComponent } from './pages/new-item/new-item.component';
+import { DetailComponent } from './pages/detail/detail.component';
 
 import { CategoriesService } from './services/categories/categories.service';
 import { ConditionsService } from './services/conditions/conditions.service';
@@ -28,7 +29,8 @@ import { ValidationService } from './services/validation/validation.service';
     RegistrationComponent,
     HomeComponent,
     LoginComponent,
-    NewItemComponent
+    NewItemComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { ValidationService } from './services/validation/validation.service';
       [
         { path: '', component: HomeComponent },
         { path: 'register', component: RegistrationComponent },
-        { path: 'new-item', component: NewItemComponent }
+        { path: 'new-item', component: NewItemComponent },
+        { path: 'items/:id', component: DetailComponent }
       ]
     )
   ],
