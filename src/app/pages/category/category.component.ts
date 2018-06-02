@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
-import { Router, ActivatedRoute, ParamMap} from '@angular/router';
+import { Router, ActivatedRoute, ParamMap, NavigationEnd} from '@angular/router';
 
 import { ItemService } from '../../services/item/item.service';
 import { CategoriesService } from '../../services/categories/categories.service';
+import { Navigation } from 'selenium-webdriver';
 
 
 @Component({
@@ -11,25 +12,26 @@ import { CategoriesService } from '../../services/categories/categories.service'
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-  category: Object = {};
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private itemService: ItemService,
     private categoriesService: CategoriesService,
   ) {
-        const splitUrl = this.router.url.split('/');
-    const id = splitUrl.pop();
-   this.category = this.categoriesService.fetchCategoryById(id);
+    
+    router.events.subscribe(val => {
+      console.log('test');
+      if (val instanceof NavigationEnd) {
+        console.log('val is true', val);
+        const id = val.url.split('/')[3];
+        this.categoriesService.fetchCategoryById(id);
+      }
+    });
+    console.log('this category', this.category);
   }
+  category: Object = this.categoriesService.selectedCategory;
 
   ngOnInit() {
-
-    // this.category = this.route.paramMap.pipe(
-    //   switchMap((params: ParamMap) =>
-    //   this.categoriesService.fetchCategoryById(params.get('id')))
-    // );
 
   }
 
