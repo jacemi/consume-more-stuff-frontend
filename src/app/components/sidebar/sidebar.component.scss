@@ -1,20 +1,26 @@
-.sidebar {
-  padding: 0;
-  margin: 15px 0 15px 15px;
-  list-style-type: none;
-  background-color: #eee;
-
-  li {
-      display: inline-block;
-      margin-right: 20px;
-  }
-
-  a { 
-      text-decoration: none; 
-      color: #333; 
-      
-      &.active {
-          color: gold;
-      }
-  }
+.sidebar{
+height: 100%;
+width: 150px;
+position: fixed;
+z-index: 1;
+left: 10px;
+background: #eee;
+overflow-x: hidden;
+padding: 8px 8px;
+color: steelblue;
+    h3 {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    display: block;
 }
+    .categoryList {
+        li {
+            h4{
+                a:hover {
+                    color: #064579;
+                }
+            }
+        }
+    }
+}
+
