@@ -12,12 +12,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NewItemComponent } from './pages/new-item/new-item.component';
-<<<<<<< HEAD
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CategoryComponent } from './pages/category/category.component';
-=======
 import { DetailComponent } from './pages/detail/detail.component';
->>>>>>> development
 
 import { CategoriesService } from './services/categories/categories.service';
 import { ConditionsService } from './services/conditions/conditions.service';
@@ -37,12 +34,9 @@ import { ValidationService } from './services/validation/validation.service';
     HomeComponent,
     LoginComponent,
     NewItemComponent,
-<<<<<<< HEAD
     SidebarComponent,
-    CategoryComponent
-=======
+    CategoryComponent,
     DetailComponent
->>>>>>> development
   ],
   imports: [
     BrowserModule,
@@ -54,11 +48,8 @@ import { ValidationService } from './services/validation/validation.service';
         { path: 'home', component: HomeComponent },
         { path: 'register', component: RegistrationComponent },
         { path: 'new-item', component: NewItemComponent },
-<<<<<<< HEAD
-        { path: 'item/category/:id', component: CategoryComponent}
-=======
+        { path: 'item/category/:id', component: CategoryComponent},
         { path: 'items/:id', component: DetailComponent }
->>>>>>> development
       ]
     )
   ],
