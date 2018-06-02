@@ -6,7 +6,7 @@
   <ul class="categoryList">
     <li *ngFor="let category of categories.categories">
       <h4>
-        <a (click)="selectCategory(category)">
+        <a routerLink="/item/category/{{category.id}}">
           {{ category.name }}</a>
       </h4>
     </li>

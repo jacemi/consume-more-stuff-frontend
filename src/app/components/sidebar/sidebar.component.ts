@@ -10,7 +10,7 @@ import { CategoriesService } from '../../services/categories/categories.service'
 })
 export class SidebarComponent implements OnInit {
   categories: Object = this.categoriesService.categories;
-  category: Object = {};
+ 
 
 
   constructor(
@@ -20,11 +20,11 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectCategory(event) {
-   this.categoriesService.category = event;
-   console.log('this.category', event);
-    this.router.navigateByUrl('/category');
-  }
+  // selectCategory(event) {
+  //  this.categoriesService.category = event;
+  //  console.log('this.category', event);
+  //   this.router.navigateByUrl('/category');
+  // }
 
 
 }
