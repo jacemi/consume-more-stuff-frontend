@@ -8,10 +8,11 @@ export class CategoriesService {
   categories: Object = {
     categories: [],
   };
-
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {
+    this.fetchCategories();
+  }
 
   fetchCategories() {
     return this.http.get('/api/categories')
@@ -29,4 +30,15 @@ export class CategoriesService {
         throw err;
       });
   }
+
+  fetchCategoryById(id) {
+    const category_id = Number(id);
+    console.log(category_id);
+    console.log(this.categories);
+    const filteredCategory = this.categories['categories'].filter((category) => {
+        return category.id === category_id;
+      });
+      console.log(filteredCategory[0]);
+      return filteredCategory;
+    }
 }
