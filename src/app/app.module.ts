@@ -17,6 +17,7 @@ import { UserService } from './services/user/user.service';
 import { ValidationService } from './services/validation/validation.service';
 import { NewItemComponent } from './pages/new-item/new-item.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { CategoryComponent } from './pages/category/category.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     HomeComponent,
     LoginComponent,
     NewItemComponent,
-    SidebarComponent
+    SidebarComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
       [
         { path: '', component: HomeComponent },
         { path: 'register', component: RegistrationComponent },
-        { path: 'new-item', component: NewItemComponent }
+        { path: 'new-item', component: NewItemComponent },
+        { path: 'category/:id', component: CategoryComponent}
       ]
     )
   ],
