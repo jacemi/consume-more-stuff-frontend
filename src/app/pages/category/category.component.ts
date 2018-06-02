@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { Router, ActivatedRoute, ParamMap} from '@angular/router';
 
 import { ItemService } from '../../services/item/item.service';
 import { CategoriesService } from '../../services/categories/categories.service';
-import { SidebarComponent } from '../../components/sidebar/sidebar.component';
+
 
 @Component({
   templateUrl: './category.component.html',
@@ -14,16 +14,22 @@ export class CategoryComponent implements OnInit {
   category: Object = {};
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private itemService: ItemService,
     private categoriesService: CategoriesService,
-    private sidebar: SidebarComponent
   ) {
-    this.category = categoriesService.category;
-   }
-
+        const splitUrl = this.router.url.split('/');
+    const id = splitUrl.pop();
+   this.category = this.categoriesService.fetchCategoryById(id);
+  }
 
   ngOnInit() {
+
+    // this.category = this.route.paramMap.pipe(
+    //   switchMap((params: ParamMap) =>
+    //   this.categoriesService.fetchCategoryById(params.get('id')))
+    // );
 
   }
 
