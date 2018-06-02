@@ -11,11 +11,13 @@ import { HeaderComponent } from './components/header/header.component';
 
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { HomeComponent } from './pages/home/home.component';
+import { NewItemComponent } from './pages/new-item/new-item.component';
 
+import { CategoriesService } from './services/categories/categories.service';
+import { ConditionsService } from './services/conditions/conditions.service';
 import { ItemService } from './services/item/item.service';
 import { UserService } from './services/user/user.service';
 import { ValidationService } from './services/validation/validation.service';
-import { NewItemComponent } from './pages/new-item/new-item.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { NewItemComponent } from './pages/new-item/new-item.component';
     )
   ],
   providers: [
+    CategoriesService,
+    ConditionsService,
     ItemService,
     UserService,
     ValidationService
