@@ -15,13 +15,15 @@ import { NewItemComponent } from './pages/new-item/new-item.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { DetailComponent } from './pages/detail/detail.component';
+import { UserComponent } from './pages/user/user.component';
 
 import { CategoriesService } from './services/categories/categories.service';
 import { ConditionsService } from './services/conditions/conditions.service';
 import { ItemService } from './services/item/item.service';
 import { UserService } from './services/user/user.service';
 import { ValidationService } from './services/validation/validation.service';
-import { UserComponent } from './pages/user/user.component';
+import { StatusService } from './services/status/status.service';
+
 
 
 
@@ -61,7 +63,8 @@ import { UserComponent } from './pages/user/user.component';
     ConditionsService,
     ItemService,
     UserService,
-    ValidationService
+    ValidationService,
+    StatusService
   ],
   bootstrap: [AppComponent]
 })

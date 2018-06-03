@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ItemService } from '../../services/item/item.service';
 import { UserService } from '../../services/user/user.service';
+import { CategoriesService } from '../../services/categories/categories.service';
+import { ConditionsService } from '../../services/conditions/conditions.service';
+import { StatusService } from '../../services/status/status.service';
 
 @Component({
   selector: 'app-detail',
@@ -11,14 +14,46 @@ import { UserService } from '../../services/user/user.service';
 export class DetailComponent implements OnInit {
 
   constructor(
+    private statusService: StatusService,
+    private conditionsService: ConditionsService,
+    private categoriesService: CategoriesService,
     private userService: UserService,
     private router: Router,
     private itemService: ItemService,
   ) { }
-  item: Object = { itemData: {} };
+  item: Object = {
+    itemData: {
+      condition: {},
+      category: {},
+    }
+  };
+  dropdown: Object = {
+    categories: {
+      categories: [],
+    },
+    conditions: [],
+    status: [],
+  };
+  message: '';
   author: boolean;
   ngOnInit() {
     const id = this.router.url.split('/')[2];
+
+    this.categoriesService.fetchCategories()
+      .then(() => {
+        this.dropdown['categories'] = this.categoriesService['categories'];
+        // console.log(this.dropdown['categories'].categories[0].id)
+      });
+
+    this.conditionsService.fetchConditions()
+      .then(() => {
+        this.dropdown['conditions'] = this.conditionsService['conditions'];
+      });
+
+    this.statusService.fetchStatus()
+      .then(() => {
+        this.dropdown['status'] = this.statusService['status'];
+      });
 
     return this.itemService.fetchItemById(id)
       .then(() => {
@@ -33,4 +68,13 @@ export class DetailComponent implements OnInit {
       });
   }
 
+  submitEditItem(event) {
+    event.preventDefault();
+    console.log('wtf');
+
+    this.itemService.editItemById(this.item['itemData'].id, this.item['itemData'])
+      .then(() => {
+        this.message = 'Edit Successful!';
+      });
+  }
 }
