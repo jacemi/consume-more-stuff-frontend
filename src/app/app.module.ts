@@ -21,6 +21,7 @@ import { ConditionsService } from './services/conditions/conditions.service';
 import { ItemService } from './services/item/item.service';
 import { UserService } from './services/user/user.service';
 import { ValidationService } from './services/validation/validation.service';
+import { StatusService } from './services/status/status.service';
 
 
 
@@ -48,7 +49,7 @@ import { ValidationService } from './services/validation/validation.service';
         { path: 'home', component: HomeComponent },
         { path: 'register', component: RegistrationComponent },
         { path: 'new-item', component: NewItemComponent },
-        { path: 'item/category/:id', component: CategoryComponent},
+        { path: 'item/category/:id', component: CategoryComponent },
         { path: 'items/:id', component: DetailComponent }
       ]
     )
@@ -58,7 +59,8 @@ import { ValidationService } from './services/validation/validation.service';
     ConditionsService,
     ItemService,
     UserService,
-    ValidationService
+    ValidationService,
+    StatusService
   ],
   bootstrap: [AppComponent]
 })
