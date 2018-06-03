@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -91,5 +91,26 @@ export class UserService {
         console.log(err);
         return;
       });
+  }
+
+  fetchUserItems(userId){
+    return this.http
+    .get('/api/items', {
+      params: new HttpParams().set('id', `${userId}`),
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+    .toPromise()
+    .then((items) => {
+      if (!items) {
+        const error = new Error();
+        error['status'] = 500;
+        throw error;
+      }
+
+      return items;
+    })
+    .catch((err) => {
+      throw err;
+    });
   }
 }
