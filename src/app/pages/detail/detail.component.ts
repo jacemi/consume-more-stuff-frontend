@@ -34,7 +34,7 @@ export class DetailComponent implements OnInit {
     conditions: [],
     status: [],
   };
-  message: '';
+  message: string;
   author: boolean;
   ngOnInit() {
     const id = this.router.url.split('/')[2];
