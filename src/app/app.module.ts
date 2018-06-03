@@ -21,6 +21,7 @@ import { ConditionsService } from './services/conditions/conditions.service';
 import { ItemService } from './services/item/item.service';
 import { UserService } from './services/user/user.service';
 import { ValidationService } from './services/validation/validation.service';
+import { UserComponent } from './pages/user/user.component';
 
 
 
@@ -36,7 +37,8 @@ import { ValidationService } from './services/validation/validation.service';
     NewItemComponent,
     SidebarComponent,
     CategoryComponent,
-    DetailComponent
+    DetailComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { ValidationService } from './services/validation/validation.service';
         { path: 'register', component: RegistrationComponent },
         { path: 'new-item', component: NewItemComponent },
         { path: 'item/category/:id', component: CategoryComponent},
-        { path: 'items/:id', component: DetailComponent }
+        { path: 'items/:id', component: DetailComponent },
+        { path: 'user', component: UserComponent }
       ]
     )
   ],
