@@ -33,6 +33,11 @@
     <option *ngFor="let condition of conditions.conditions" value={{condition.id}}>{{ condition.name }}</option>
   </select>
 
+  <label for="photo">Photo: </label>
+  <input type="file" name="photo" [(ngModel)]="itemData.photo" accept=".jpg, .jpeg, .png" multiple>
+
+  <!-- <button type="button" class="clearPhoto" (click)="clearPhoto()">clear photo</button> -->
+
 
   <button (click)="submitNewItem($event)">Submit</button>
 </form>
