@@ -12,21 +12,35 @@ export class UserComponent implements OnInit {
 
   constructor(
     private itemService:
-    ItemService,
+      ItemService,
     private userService:
-    UserService
+      UserService
   ) { }
-  publishedItems: Object = {
-    publishedItems: []
+  user: Object = {
+    id: '',
+    email: '',
   };
-  soldItems: Object = {
-    soldItems: []
+  userItems: Object = {
+    publishedItems: [],
+    soldItems: [],
+    delistedItems: []
   };
+
 
   ngOnInit() {
-    const user = localStorage.getItem('user');
-    console.log(user); 
-    // this.userService.fetchUserItems()
+    const id = this.userService.user['id'];
+    this.userService.fetchUser(id)
+      .then((user) => {
+        user['items'].map((item) => {
+          if (item['status_id'] === 3) {
+            this.userItems['delistedItems'].push(item);
+          } else if (item['status_id'] === 2) {
+            this.userItems['soldItems'].push(item);
+          }
+          this.userItems['publishedItems'].push(item);
+        });
+      });
   }
-
 }
+
+
