@@ -21,7 +21,7 @@ export class NewItemComponent {
     condition_id: null,
     status_id: 1,
     message: '',
-    photo: ''
+    photo: []
   };
   categories: Object = this.categoriesService.categories;
   conditions: Object = this.conditionsService.conditions;
