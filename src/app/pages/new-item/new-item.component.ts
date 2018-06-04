@@ -20,7 +20,8 @@ export class NewItemComponent {
     category_id: null,
     condition_id: null,
     status_id: 1,
-    message: ''
+    message: '',
+    photo: ''
   };
   categories: Object = this.categoriesService.categories;
   conditions: Object = this.conditionsService.conditions;
