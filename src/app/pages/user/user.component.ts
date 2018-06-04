@@ -36,8 +36,9 @@ export class UserComponent implements OnInit {
             this.userItems['delistedItems'].push(item);
           } else if (item['status_id'] === 2) {
             this.userItems['soldItems'].push(item);
+          } else {
+            this.userItems['publishedItems'].push(item);
           }
-          this.userItems['publishedItems'].push(item);
         });
       });
   }
