@@ -93,24 +93,43 @@ export class UserService {
       });
   }
 
-  fetchUserItems(userId){
-    return this.http
-    .get('/api/items', {
-      params: new HttpParams().set('id', `${userId}`),
-      headers: new HttpHeaders().set('Content-Type', 'application/json')
-    })
-    .toPromise()
-    .then((items) => {
-      if (!items) {
-        const error = new Error();
-        error['status'] = 500;
-        throw error;
-      }
+  fetchUser(id) {
+    return this.http.get(`/api/users/${id}`)
+      .toPromise()
+      .then((user) => {
+        if (!user) {
+          const error = new Error();
+          error['status'] = 500;
+          throw error;
+        }
 
-      return items;
-    })
-    .catch((err) => {
-      throw err;
-    });
+        return user;
+      })
+      .catch((err) => {
+        throw err;
+      });
   }
 }
+
+  // fetchUserItems(userId){
+  //   return this.http
+  //   .get('/api/items', {
+  //     params: new HttpParams().set('id', `${userId}`),
+  //     headers: new HttpHeaders().set('Content-Type', 'application/json')
+  //   })
+  //   .toPromise()
+  //   .then((items) => {
+  //     if (!items) {
+  //       const error = new Error();
+  //       error['status'] = 500;
+  //       throw error;
+  //     }
+
+  //     return items;
+  //   })
+  //   .catch((err) => {
+  //     throw err;
+  //   });
+  // }
+
+
