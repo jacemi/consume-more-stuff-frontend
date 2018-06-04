@@ -15,6 +15,7 @@ import { NewItemComponent } from './pages/new-item/new-item.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { DetailComponent } from './pages/detail/detail.component';
+import { UserComponent } from './pages/user/user.component';
 
 import { CategoriesService } from './services/categories/categories.service';
 import { ConditionsService } from './services/conditions/conditions.service';
@@ -22,6 +23,7 @@ import { ItemService } from './services/item/item.service';
 import { UserService } from './services/user/user.service';
 import { ValidationService } from './services/validation/validation.service';
 import { StatusService } from './services/status/status.service';
+
 
 
 
@@ -37,7 +39,8 @@ import { StatusService } from './services/status/status.service';
     NewItemComponent,
     SidebarComponent,
     CategoryComponent,
-    DetailComponent
+    DetailComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -49,8 +52,9 @@ import { StatusService } from './services/status/status.service';
         { path: 'home', component: HomeComponent },
         { path: 'register', component: RegistrationComponent },
         { path: 'new-item', component: NewItemComponent },
-        { path: 'item/category/:id', component: CategoryComponent },
-        { path: 'items/:id', component: DetailComponent }
+        { path: 'item/category/:id', component: CategoryComponent},
+        { path: 'items/:id', component: DetailComponent },
+        { path: 'user', component: UserComponent }
       ]
     )
   ],

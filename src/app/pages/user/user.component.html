@@ -1,0 +1,23 @@
+<div id="userItemWrap">
+  <h2>Published Items:</h2>
+  <div class="publishedItemsWrap" *ngFor="let item of userItems.publishedItems">
+    <a routerLink="/items/{{item.id}}">
+      <h4>Description: {{item.description}}</h4>
+      <h4>Published on: {{item.created_at}}</h4>
+    </a>
+  </div>
+  <h2>Sold Items:</h2>
+  <div class="soldItemsWrap" *ngFor="let item of userItems.soldItems">
+    <a routerLink="/items/{{item.id}}">
+      <h4>Description: {{item.description}}</h4>
+      <h4>Published on: {{item.created_at}}</h4>
+    </a>
+  </div>
+  <h2>Delisted Items:</h2>
+  <div class="delistedItemsWrap" *ngFor="let item of userItems.delistedItems">
+    <a routerLink="/items/{{item.id}}">
+      <h4>Description: {{item.description}}</h4>
+      <h4>Published on: {{item.created_at}}</h4>
+    </a>
+  </div>
+</div>
