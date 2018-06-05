@@ -52,9 +52,9 @@ export class SettingsComponent implements OnInit {
       return passwordUpdateData['message'] = 'Please check that both new password fields match';
     }
 
-    this.userService.registerUser(this.passwordUpdateData)
+    this.userService.updateUserPassword(this.passwordUpdateData)
       .then((data) => {
-        return this.router.navigateByUrl('/');
+        return this.router.navigateByUrl('/user');
       })
       .catch((err) => {
         console.log(err);
