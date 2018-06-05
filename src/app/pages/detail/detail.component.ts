@@ -37,8 +37,11 @@ export class DetailComponent implements OnInit {
   };
   message: string;
   author: boolean;
+  editMode: boolean;
   ngOnInit() {
     const id = this.router.url.split('/')[2];
+
+    this.editMode = false;
 
     this.categoriesService.fetchCategories()
       .then(() => {
@@ -69,9 +72,17 @@ export class DetailComponent implements OnInit {
       });
   }
 
+  toggleEditMode(event) {
+    event.preventDefault();
+    if (this.editMode === true) {
+      this.editMode = false;
+    } else {
+      this.editMode = true;
+    }
+  }
+
   submitEditItem(event) {
     event.preventDefault();
-    console.log('wtf');
 
     this.itemService.editItemById(this.item['itemData'].id, this.item['itemData'])
       .then(() => {
