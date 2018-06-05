@@ -82,10 +82,10 @@ export class UserService {
     this.user['online'] = false;
     this.user['id'] = '';
     this.user['email'] = '';
-    this.http.get('/api/users/logout')
-      .toPromise()
-      .then(() => {
-        return localStorage.removeItem('user');
+    return this.http.get('/api/users/logout')
+    .toPromise()
+    .then(() => {
+      localStorage.removeItem('user');
       })
       .catch((err) => {
         console.log(err);
