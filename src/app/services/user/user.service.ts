@@ -83,9 +83,9 @@ export class UserService {
     this.user['id'] = '';
     this.user['email'] = '';
     return this.http.get('/api/users/logout')
-    .toPromise()
-    .then(() => {
-      localStorage.removeItem('user');
+      .toPromise()
+      .then(() => {
+        localStorage.removeItem('user');
       })
       .catch((err) => {
         console.log(err);
@@ -109,27 +109,21 @@ export class UserService {
         throw err;
       });
   }
+
+  updateUserPassword(data) {
+    const id = this.user['id'];
+    return this.http.post(`/api/users/${id}/password`, data)
+      .toPromise()
+      .then((user) => {
+        if (!user) {
+          const error = new Error();
+          error['status'] = 500;
+          throw error;
+        }
+        return user;
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
 }
-
-  // fetchUserItems(userId){
-  //   return this.http
-  //   .get('/api/items', {
-  //     params: new HttpParams().set('id', `${userId}`),
-  //     headers: new HttpHeaders().set('Content-Type', 'application/json')
-  //   })
-  //   .toPromise()
-  //   .then((items) => {
-  //     if (!items) {
-  //       const error = new Error();
-  //       error['status'] = 500;
-  //       throw error;
-  //     }
-
-  //     return items;
-  //   })
-  //   .catch((err) => {
-  //     throw err;
-  //   });
-  // }
-
-

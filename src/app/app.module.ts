@@ -23,6 +23,7 @@ import { ItemService } from './services/item/item.service';
 import { UserService } from './services/user/user.service';
 import { ValidationService } from './services/validation/validation.service';
 import { StatusService } from './services/status/status.service';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 
 
@@ -40,7 +41,8 @@ import { StatusService } from './services/status/status.service';
     SidebarComponent,
     CategoryComponent,
     DetailComponent,
-    UserComponent
+    UserComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { StatusService } from './services/status/status.service';
         { path: 'new-item', component: NewItemComponent },
         { path: 'item/category/:id', component: CategoryComponent},
         { path: 'items/:id', component: DetailComponent },
-        { path: 'user', component: UserComponent }
+        { path: 'user', component: UserComponent },
+        { path: 'user/settings', component: SettingsComponent }
       ]
     )
   ],
