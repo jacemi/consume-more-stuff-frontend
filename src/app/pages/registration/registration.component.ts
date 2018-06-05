@@ -46,8 +46,6 @@ export class RegistrationComponent {
       return registrationData['message'] = 'Please check that both password fields match';
     }
 
-
-
     this.userService.registerUser(this.registrationData)
       .then((data) => {
         return this.router.navigateByUrl('/');
