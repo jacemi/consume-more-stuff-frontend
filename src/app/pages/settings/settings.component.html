@@ -10,9 +10,13 @@
     <input type="password" name="password" placeholder="Input password here" [(ngModel)]="passwordUpdateData.newPassword"><br>
 
     <label for="confirmPassword">Confirm new password: </label>
-    <input type="password" name="confirmPassword" placeholder="Confirm password here" [(ngModel)]="registrationData.confirmNewPassword"><br>
+    <input type="password" name="confirmPassword" placeholder="Confirm password here" [(ngModel)]="passwordUpdateData.confirmNewPassword"><br>
 
 
 
     <button (click)="submitPasswordUpdate($event)">Submit</button>
 </form>
+
+<br><br>
+
+{{passwordUpdateData.message}}
