@@ -56,7 +56,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
         { path: 'new-item', component: NewItemComponent },
         { path: 'item/category/:id', component: CategoryComponent},
         { path: 'items/:id', component: DetailComponent },
-        { path: 'user', component: UserComponent }
+        { path: 'user', component: UserComponent },
+        { path: 'user/settings', component: SettingsComponent }
       ]
     )
   ],
