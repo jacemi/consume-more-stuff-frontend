@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CategoriesService } from '../../services/categories/categories.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,14 +11,15 @@ import { CategoriesService } from '../../services/categories/categories.service'
 })
 export class SidebarComponent implements OnInit {
   categories: Object = this.categoriesService.categories;
- 
-
+ loginData: Object = this.userService.user;
 
   constructor(
     private categoriesService: CategoriesService,
+    private userService: UserService,
     private router: Router ) { }
 
   ngOnInit() {
+    console.log(this.loginData['online']);
   }
 
   // selectCategory(event) {

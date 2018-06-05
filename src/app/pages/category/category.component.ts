@@ -20,16 +20,14 @@ export class CategoryComponent implements OnInit {
   ) {
 
     router.events.subscribe(val => {
-      console.log('val', val);
       if (val instanceof NavigationEnd) {
-        console.log('val is true', val);
-        const id = val.url.split('/')[3];
-        console.log(id);
-        this.categoriesService.fetchCategoryById(id);
-        this.category = this.categoriesService.selectedCategory;
+        if (val.url.includes('/item/category/')) {
+          const id = val.url.split('/')[3];
+          this.categoriesService.fetchCategoryById(id);
+          this.category = this.categoriesService.selectedCategory;
+        }
       }
     });
-    console.log('this category', this.category);
   }
   category: Object = {};
 
