@@ -25,6 +25,7 @@ export class DetailComponent implements OnInit {
     itemData: {
       condition: {},
       category: {},
+      photos: [],
     }
   };
   dropdown: Object = {

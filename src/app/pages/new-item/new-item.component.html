@@ -1,6 +1,6 @@
 <h2>Publish New Item:</h2>
 
-<form>
+<form id="newItemForm">
   <label for="description">Description: </label>
   <input type="text" name="description" placeholder="Input description here" [(ngModel)]="itemData.description"> *
   <br>
@@ -21,20 +21,20 @@
   <input type="text" name="price" placeholder="Input price here" [(ngModel)]="itemData.price">
   <br>
 
-  <label for="category">Category: </label>
-  <select name="category" id="newCategory" [(ngModel)]="itemData.category_id">
+  <label for="category_id">Category: </label>
+  <select name="category_id" id="newCategory" [(ngModel)]="itemData.category_id">
     <option value="" selected disabled hidden>Select category</option>
     <option *ngFor="let category of categories.categories" value={{category.id}}>{{ category.name }}</option>
   </select>
 
-  <label for="condition">Condition: </label>
-  <select name="condition" id="newCondition" [(ngModel)]="itemData.condition_id">
+  <label for="condition_id">Condition: </label>
+  <select name="condition_id" id="newCondition" [(ngModel)]="itemData.condition_id">
     <option value="" selected disabled hidden>Select condition</option>
     <option *ngFor="let condition of conditions.conditions" value={{condition.id}}>{{ condition.name }}</option>
   </select>
 
-  <label for="photo">Photo: </label>
-  <input type="file" name="photo" [(ngModel)]="itemData.photo" accept=".jpg, .jpeg, .png" multiple>
+  <label for="photos">Photo: </label>
+  <input type="file" name="photos" [(ngModel)]="itemData.photo" accept=".jpg, .jpeg, .png" multiple>
 
   <!-- <button type="button" class="clearPhoto" (click)="clearPhoto()">clear photo</button> -->
 

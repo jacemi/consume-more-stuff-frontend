@@ -19,9 +19,7 @@ export class NewItemComponent {
     price: '',
     category_id: null,
     condition_id: null,
-    status_id: 1,
     message: '',
-    photo: ''
   };
   categories: Object = this.categoriesService.categories;
   conditions: Object = this.conditionsService.conditions;
@@ -43,8 +41,12 @@ export class NewItemComponent {
     if (!this.validationService.fieldValidation(valuesArray)) {
       return itemData['message'] = 'Description, category, and condition are required fields';
     }
+    const form = document.querySelector('form');
+    const formData = new FormData(form);
 
-    this.itemService.publishItem(itemData)
+    formData.append('status_id', '1');
+
+    this.itemService.publishItem(formData)
       .then((data) => {
         return this.router.navigateByUrl('/');
       })
