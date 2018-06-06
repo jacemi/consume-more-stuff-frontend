@@ -25,10 +25,6 @@ import { ValidationService } from './services/validation/validation.service';
 import { StatusService } from './services/status/status.service';
 import { SettingsComponent } from './pages/settings/settings.component';
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -21,8 +21,8 @@ export class NewItemComponent {
     condition_id: null,
     message: '',
   };
-  categories: Object = this.categoriesService.categories;
-  conditions: Object = this.conditionsService.conditions;
+  categories: Object = {};
+  conditions: Object = {};
 
   constructor(
     private router: Router,
@@ -30,7 +30,10 @@ export class NewItemComponent {
     private categoriesService: CategoriesService,
     private itemService: ItemService,
     private validationService: ValidationService
-  ) { }
+  ) {
+    this.categories = this.categoriesService.categories;
+    this.conditions = this.conditionsService.conditions;
+  }
 
   submitNewItem(event) {
     event.preventDefault();
