@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { CategoriesService } from '../../services/categories/categories.service';
-
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
   constructor(
-    private categoriesService: CategoriesService,
     private http: HttpClient
   ) { }
 
-  categories: Object = this.categoriesService.categories;
   itemData: Object = {};
+  filteredData: Object = {
+    items: []
+  };
 
   publishItem(data) {
     return this.http.post('/api/items', data)
@@ -24,7 +23,6 @@ export class ItemService {
           error['status'] = 500;
           throw error;
         }
-
         return item;
       })
       .catch((err) => {
@@ -58,8 +56,19 @@ export class ItemService {
           error['status'] = 500;
           throw error;
         }
-
         return item;
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  fetchItemsByCategoryId(id) {
+    return this.http.get(`/api/items/categories/${id}`)
+      .toPromise()
+      .then((items: Array<any>) => {
+        this.filteredData['items'] = items;
+        return items;
       })
       .catch((err) => {
         throw err;

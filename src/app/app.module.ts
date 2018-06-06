@@ -51,11 +51,10 @@ import { SettingsComponent } from './pages/settings/settings.component';
     RouterModule.forRoot(
       [
         { path: '', component: HomeComponent },
-        { path: 'home', component: HomeComponent },
         { path: 'register', component: RegistrationComponent },
-        { path: 'new-item', component: NewItemComponent },
-        { path: 'item/category/:id', component: CategoryComponent},
+        { path: 'items/new', component: NewItemComponent },
         { path: 'items/:id', component: DetailComponent },
+        { path: 'categories/:id', component: CategoryComponent },
         { path: 'user', component: UserComponent },
         { path: 'user/settings', component: SettingsComponent }
       ]

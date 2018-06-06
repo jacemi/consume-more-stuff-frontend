@@ -5,58 +5,59 @@
   <h4>Manufacterer: {{item.itemData.manufacturer}}</h4>
   <h4>Model: {{item.itemData.model}}</h4>
   <h4>Price: {{item.itemData.price}}</h4>
-  <h4>Category: {{item.itemData.category_id}}</h4>
-  <h4>Condition: {{item.itemData.condition_id}}</h4>
+  <h4>Category: {{item.itemData.category.name}}</h4>
+  <h4>Condition: {{item.itemData.condition.name}}</h4>
   <h4>Dimensions: {{item.itemData.dimensions}}</h4>
   <h4>Published: {{item.itemData.created_at}}</h4>
   <h4>Updated: {{item.itemData.updated_at}}</h4>
   <h4>Detail: {{item.itemData.detail}}</h4>
 </div>
 
-<button *ngIf="author" (click)="toggleEditMode($event)">Edit</button>
 <form *ngIf="author && editMode">
   <label for="description">Description: </label>
-  <input name="description" type="text" value={{item.itemData.description}} [(ngModel)]="item.itemData.description">
+  <input name="description" type="text" [(ngModel)]="item.itemData.description">
   <br>
 
   <label for="manufacturer">Manufacturer: </label>
-  <input name="manufacturer" type="text" value={{item.itemData.manufacturer}} [(ngModel)]="item.itemData.manufacturer">
+  <input name="manufacturer" type="text" [(ngModel)]="item.itemData.manufacturer">
   <br>
 
   <label for="model">Model: </label>
-  <input name="model" type="text" value={{item.itemData.model}} [(ngModel)]="item.itemData.model">
+  <input name="model" type="text" [(ngModel)]="item.itemData.model">
   <br>
 
   <label for="price">Price: </label>
-  <input name="price" type="text" value={{item.itemData.price}} [(ngModel)]="item.itemData.price">
+  <input name="price" type="text" [(ngModel)]="item.itemData.price">
   <br>
 
   <label for="category">Category: </label>
-  <select name="category_id" [(ngModel)]="item.itemData.category_id">
+  <select name="category_id" [(ngModel)]="item.itemData.category.id">
     <option *ngFor="let category of dropdown.categories.categories" value={{category.id}}>{{category.name}}</option>
   </select>
   <br>
 
   <label for="condition">Condition: </label>
-  <select name="condition_id" [(ngModel)]="item.itemData.condition_id">
+  <select name="condition_id" [(ngModel)]="item.itemData.condition.id">
     <option *ngFor="let condition of dropdown.conditions.conditions" value={{condition.id}}>{{condition.name}}</option>
   </select>
   <br>
 
   <label for="status">Status: </label>
-  <select name="status_id" [(ngModel)]="item.itemData.status_id">
+  <select name="status_id" [(ngModel)]="item.itemData.status.id">
     <option *ngFor="let status of dropdown.status.status" value={{status.id}}>{{status.name}}</option>
   </select>
   <br>
 
   <label for="dimensions">Dimensions: </label>
-  <input name="dimensions" type="text" value={{item.itemData.dimensions}} [(ngModel)]="item.itemData.dimensions">
+  <input name="dimensions" type="text" [(ngModel)]="item.itemData.dimensions">
   <br>
 
   <label for="detail">Details: </label>
-  <input name="detail" type="text" value={{item.itemData.detail}} [(ngModel)]="item.itemData.detail">
+  <input name="detail" type="text" [(ngModel)]="item.itemData.detail">
   <br>
   <button (click)="submitEditItem($event)">Submit</button>
 </form>
+
+<button *ngIf="author" (click)="toggleEditMode($event)">Edit</button>
 
 <div>{{message}}</div>

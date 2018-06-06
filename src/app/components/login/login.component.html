@@ -6,7 +6,7 @@
   <label for="password">Password: </label>
   <input type="password" name="password" placeholder="Input password here" [(ngModel)]="loginData.password">
   <br>
-  <div>{{loginData.message}}</div>
+  <div>{{message}}</div>
 
   <button (click)="loginUser($event)">Login</button>
 </form>
