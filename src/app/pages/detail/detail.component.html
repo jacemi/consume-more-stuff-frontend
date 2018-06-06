@@ -1,4 +1,8 @@
-<img class="itemPhotos" *ngFor="let photo of item.itemData.photos" src={{photo.url}}>
+<div class="itemPhotoContainer" *ngFor="let photo of item.itemData.photos" >
+    <img class="itemPhotos" src={{photo.url}} >
+      <button (click)="deletePhoto(photo)">Delete</button>
+    </div>
+    
 
 <div *ngIf="!editMode || !author" id="detailCardWrap">
   <h2>Description: {{item.itemData.description}}</h2>
@@ -54,6 +58,10 @@
 
   <label for="detail">Details: </label>
   <input name="detail" type="text" [(ngModel)]="item.itemData.detail">
+  <br>
+
+  <label for="photos">Photo: </label>
+  <input type="file" name="photos" [(ngModel)]="item.itemData.photo" accept=".jpg, .jpeg, .png" multiple>
   <br>
   <button (click)="submitEditItem($event)">Submit</button>
 </form>
