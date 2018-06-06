@@ -11,16 +11,18 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoginComponent {
   loginData: Object = {
-    email: this.userService.user['email'],
+    email: '',
     password: '',
-    message: '',
-    online: this.userService.user['online'],
+    online: null
   };
+  message: string;
 
   constructor(
     private router: Router,
     private userService: UserService,
-  ) { }
+  ) {
+    this.loginData = this.userService.user;
+  }
 
 
   loginUser(event) {
@@ -38,7 +40,6 @@ export class LoginComponent {
 
     return this.userService.loginUser(loginData)
       .then(() => {
-        this.loginData['online'] = this.userService.user['online'];
         return this.router.navigateByUrl('/');
       })
       .catch((err) => {
@@ -51,6 +52,5 @@ export class LoginComponent {
     event.preventDefault();
 
     this.userService.logoutUser();
-    this.loginData['online'] = this.userService.user['online'];
   }
 }

@@ -19,14 +19,11 @@ export class UserService {
     this.getUser();
   }
 
-
   getUser() {
     let user = localStorage.getItem('user');
     user = JSON.parse(user);
-    console.log(this);
 
     if (!user) {
-      // this.router.navigateByUrl('/');
       return false;
     }
 
@@ -38,7 +35,6 @@ export class UserService {
   }
 
   registerUser(data) {
-    console.log('Registering user...');
     return this.http.post('/api/users', data)
       .toPromise()
       .then((user) => {
@@ -65,8 +61,6 @@ export class UserService {
   }
 
   loginUser(data) {
-    console.log('Logging in user...');
-
     return this.http.post('/api/users/login', data)
       .toPromise()
       .then((user) => {

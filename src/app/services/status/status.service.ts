@@ -8,7 +8,9 @@ import { HttpClient } from '@angular/common/http';
 export class StatusService {
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {
+    this.fetchStatus();
+  }
 
   status: Object = {
     status: [],
@@ -18,11 +20,7 @@ export class StatusService {
     return this.http.get('/api/status')
       .toPromise()
       .then((status: Array<any>) => {
-        if (!status) {
-          const error = new Error();
-          error['status'] = 500;
-          throw error;
-        }
+
         this.status['status'] = status;
         return status;
       })

@@ -5,27 +5,25 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CategoriesService {
+  topItemsByCategories: Object = {
+    categories: []
+  };
   categories: Object = {
     categories: []
   };
-  selectedCategory: Object = {
-    selectedCategory: {}
-  };
+
   constructor(
     private http: HttpClient,
   ) {
+    this.fetchCategories();
   }
 
-  fetchCategories() {
-    return this.http.get('/api/categories')
+  fetchTopItemsByCategories() {
+    return this.http.get('/api/categories/items')
       .toPromise()
       .then((categories: Array<any>) => {
-        if (!categories) {
-          const error = new Error();
-          error['status'] = 500;
-          throw error;
-        }
-        this.categories['categories'] = categories;
+
+        this.topItemsByCategories['categories'] = categories;
         return categories;
       })
       .catch((err) => {
@@ -33,17 +31,13 @@ export class CategoriesService {
       });
   }
 
-  fetchCategoryById(id) {
-    return this.http.get(`/api/categories/${id}`)
+  fetchCategories() {
+    return this.http.get('/api/categories')
       .toPromise()
-      .then((category: Object) => {
-        if (!category) {
-          const error = new Error();
-          error['status'] = 500;
-          throw error;
-        }
-        this.selectedCategory['selectedCategory'] = category;
-        return category;
+      .then((categories: Array<any>) => {
+
+        this.categories['categories'] = categories;
+        return categories;
       })
       .catch((err) => {
         throw err;

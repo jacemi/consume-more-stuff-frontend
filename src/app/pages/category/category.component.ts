@@ -1,40 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { switchMap } from 'rxjs/operators';
-import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
+import { Component, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { ItemService } from '../../services/item/item.service';
-import { CategoriesService } from '../../services/categories/categories.service';
-import { Navigation } from 'selenium-webdriver';
-
 
 @Component({
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnDestroy {
+  data: Object = {
+    items: []
+  };
+  subscription: any;
+
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private itemService: ItemService,
-    private categoriesService: CategoriesService,
+    private itemService: ItemService
   ) {
-
-    router.events.subscribe(val => {
-      if (val instanceof NavigationEnd) {
-        if (val.url.includes('/item/category/')) {
-          const id = val.url.split('/')[3];
-          this.categoriesService.fetchCategoryById(id);
-          this.category = this.categoriesService.selectedCategory;
-        }
-      }
+    this.subscription = this.route.params.subscribe((params) => {
+      const id = params.id;
+      this.itemService.fetchItemsByCategoryId(id)
+        .then(() => {
+          this.data = this.itemService.filteredData;
+        });
     });
   }
-  category: Object = {};
 
-  ngOnInit() {
-
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
-
-
-
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ItemService } from '../../services/item/item.service';
 import { UserService } from '../../services/user/user.service';
@@ -11,16 +11,34 @@ import { StatusService } from '../../services/status/status.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent {
 
   constructor(
     private statusService: StatusService,
     private conditionsService: ConditionsService,
     private categoriesService: CategoriesService,
     private userService: UserService,
-    private router: Router,
     private itemService: ItemService,
-  ) { }
+    private router: Router,
+  ) {
+    const id = this.router.url.split('/')[2];
+
+    this.editMode = false;
+    this.dropdown['categories'] = this.categoriesService['categories'];
+    this.dropdown['conditions'] = this.conditionsService['conditions'];
+    this.dropdown['status'] = this.statusService['status'];
+
+    this.itemService.fetchItemById(id)
+      .then(() => {
+        this.item = this.itemService.itemData;
+        if (this.item['itemData'].poster_id === this.userService.user['id']) {
+          this.author = true;
+        } else {
+          this.author = false;
+        }
+      });
+  }
+
   item: Object = {
     itemData: {
       condition: {},
@@ -32,48 +50,20 @@ export class DetailComponent implements OnInit {
     categories: {
       categories: [],
     },
-    conditions: [],
-    status: [],
+    conditions: {
+      conditions: []
+    },
+    status: {
+      status: []
+    },
   };
   message: string;
   author: boolean;
   editMode: boolean;
-  ngOnInit() {
-    const id = this.router.url.split('/')[2];
-
-    this.editMode = false;
-
-    this.categoriesService.fetchCategories()
-      .then(() => {
-        this.dropdown['categories'] = this.categoriesService['categories'];
-        // console.log(this.dropdown['categories'].categories[0].id)
-      });
-
-    this.conditionsService.fetchConditions()
-      .then(() => {
-        this.dropdown['conditions'] = this.conditionsService['conditions'];
-      });
-
-    this.statusService.fetchStatus()
-      .then(() => {
-        this.dropdown['status'] = this.statusService['status'];
-      });
-
-    return this.itemService.fetchItemById(id)
-      .then(() => {
-        this.item = this.itemService.itemData;
-        console.log(this.item);
-        console.log(this.userService.user);
-        if (this.item['itemData'].poster_id === this.userService.user['id']) {
-          this.author = true;
-        } else {
-          this.author = false;
-        }
-      });
-  }
 
   toggleEditMode(event) {
     event.preventDefault();
+
     if (this.editMode === true) {
       this.editMode = false;
     } else {
@@ -84,7 +74,10 @@ export class DetailComponent implements OnInit {
   submitEditItem(event) {
     event.preventDefault();
 
-    this.itemService.editItemById(this.item['itemData'].id, this.item['itemData'])
+    const id = this.item['itemData'].id;
+    const data = this.item['itemData'];
+
+    this.itemService.editItemById(id, data)
       .then(() => {
         this.message = 'Edit Successful!';
       });

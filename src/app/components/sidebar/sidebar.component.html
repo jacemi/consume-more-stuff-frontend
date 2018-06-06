@@ -1,10 +1,10 @@
 <div class="sidebar">
   <h3 id="homeLink">
-    <a routerLink="/home">Home</a>
+    <a routerLink="/">Home</a>
   </h3>
 
   <h3 id="userLink" *ngIf="loginData.online">
-      <a routerLink="/user">User</a>
+    <a routerLink="/user">User</a>
   </h3>
 
   <h3 id="settingsLink" *ngIf="loginData.online">
@@ -12,14 +12,14 @@
   </h3>
 
   <h3 id="addItemLink" *ngIf="loginData.online">
-      <a routerLink="/new-item">+ New Item</a>
+    <a routerLink="/items/new">+ New Item</a>
   </h3>
 
   <h3>Categories</h3>
   <ul class="categoryList">
     <li *ngFor="let category of categories.categories">
       <h4>
-        <a routerLink="/item/category/{{category.id}}">
+        <a routerLink="/categories/{{category.id}}">
           {{ category.name }}</a>
       </h4>
     </li>
