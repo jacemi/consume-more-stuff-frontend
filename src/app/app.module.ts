@@ -24,9 +24,7 @@ import { UserService } from './services/user/user.service';
 import { ValidationService } from './services/validation/validation.service';
 import { StatusService } from './services/status/status.service';
 import { SettingsComponent } from './pages/settings/settings.component';
-
-
-
+import { PhotoService } from './services/photo/photo.service';
 
 
 @NgModule({
@@ -66,7 +64,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
     ItemService,
     UserService,
     ValidationService,
-    StatusService
+    StatusService,
+    PhotoService
   ],
   bootstrap: [AppComponent]
 })
