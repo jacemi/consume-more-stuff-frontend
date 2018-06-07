@@ -25,6 +25,7 @@ import { ValidationService } from './services/validation/validation.service';
 import { StatusService } from './services/status/status.service';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { PhotoService } from './services/photo/photo.service';
+import { ItemFilterPipe } from './pipes/item-filter.pipe';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { PhotoService } from './services/photo/photo.service';
     CategoryComponent,
     DetailComponent,
     UserComponent,
-    SettingsComponent
+    SettingsComponent,
+    ItemFilterPipe
   ],
   imports: [
     BrowserModule,
