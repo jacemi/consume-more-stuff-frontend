@@ -1,23 +1,24 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  constructor(
+    private http: HttpClient,
+  ) {
+    this.getUser();
+  }
+
   user: Object = {
     online: false,
     id: '',
     email: '',
   };
-  constructor(
-    private router: Router,
-    private http: HttpClient,
-  ) {
-    this.getUser();
-  }
+  userItems: Object = {
+    items: []
+  };
 
   getUser() {
     let user = localStorage.getItem('user');
@@ -91,12 +92,7 @@ export class UserService {
     return this.http.get(`/api/users/${id}`)
       .toPromise()
       .then((user) => {
-        if (!user) {
-          const error = new Error();
-          error['status'] = 500;
-          throw error;
-        }
-
+        this.userItems['items'] = user['items'];
         return user;
       })
       .catch((err) => {

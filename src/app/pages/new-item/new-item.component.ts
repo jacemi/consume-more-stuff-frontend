@@ -19,10 +19,10 @@ export class NewItemComponent {
     price: '',
     category_id: null,
     condition_id: null,
-    message: '',
   };
-  categories: Object = this.categoriesService.categories;
-  conditions: Object = this.conditionsService.conditions;
+  message: String = '';
+  categories: Object = {};
+  conditions: Object = {};
 
   constructor(
     private router: Router,
@@ -30,7 +30,10 @@ export class NewItemComponent {
     private categoriesService: CategoriesService,
     private itemService: ItemService,
     private validationService: ValidationService
-  ) { }
+  ) {
+    this.categories = this.categoriesService.categories;
+    this.conditions = this.conditionsService.conditions;
+  }
 
   submitNewItem(event) {
     event.preventDefault();
@@ -39,7 +42,7 @@ export class NewItemComponent {
     const valuesArray = [itemData['description'], itemData['category_id'], itemData['condition_id']];
 
     if (!this.validationService.fieldValidation(valuesArray)) {
-      return itemData['message'] = 'Description, category, and condition are required fields';
+      return this.message = 'Description, category, and condition are required fields';
     }
     const form = document.querySelector('form');
     const formData = new FormData(form);
@@ -55,5 +58,4 @@ export class NewItemComponent {
         return;
       });
   }
-
 }

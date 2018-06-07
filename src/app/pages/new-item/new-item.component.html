@@ -23,24 +23,23 @@
 
   <label for="category_id">Category: </label>
   <select name="category_id" id="newCategory" [(ngModel)]="itemData.category_id">
-    <option value="" selected disabled hidden>Select category</option>
+    <option [ngValue]=null selected>Select category</option>
     <option *ngFor="let category of categories.categories" value={{category.id}}>{{ category.name }}</option>
   </select>
+  <br>
 
   <label for="condition_id">Condition: </label>
-  <select name="condition_id" id="newCondition" [(ngModel)]="itemData.condition_id">
-    <option value="" selected disabled hidden>Select condition</option>
+  <select required name="condition_id" id="newCondition" [(ngModel)]="itemData.condition_id">
+    <option [ngValue]=null selected>Select condition</option>
     <option *ngFor="let condition of conditions.conditions" value={{condition.id}}>{{ condition.name }}</option>
   </select>
+  <br>
 
   <label for="photos">Photo: </label>
   <input type="file" name="photos" [(ngModel)]="itemData.photo" accept=".jpg, .jpeg, .png" multiple>
+  <br>
 
-  <!-- <button type="button" class="clearPhoto" (click)="clearPhoto()">clear photo</button> -->
-
+  <div id="message">{{message}}</div>
 
   <button (click)="submitNewItem($event)">Submit</button>
 </form>
-
-<br>
-<br> {{ itemData.message }} {{itemData.category_id}} {{itemData.condition_id}}

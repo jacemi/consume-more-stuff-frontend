@@ -13,8 +13,8 @@ export class RegistrationComponent {
     email: '',
     password: '',
     confirmPassword: '',
-    message: ''
   };
+  message: String = '';
 
   constructor(
     private router: Router,
@@ -35,15 +35,15 @@ export class RegistrationComponent {
     const valuesArray = [registrationData['email'], registrationData['password'], registrationData['confirmPassword']];
 
     if (!this.validationService.fieldValidation(valuesArray)) {
-      return registrationData['message'] = 'Please fill out the entire form';
+      return this.message = 'Please fill out the entire form';
     }
 
     if (!this.validationService.emailValidation(email)) {
-      return registrationData['message'] = 'Please enter a valid email address';
+      return this.message = 'Please enter a valid email address';
     }
 
     if (registrationData['password'] !== registrationData['confirmPassword']) {
-      return registrationData['message'] = 'Please check that both password fields match';
+      return this.message = 'Please check that both password fields match';
     }
 
     this.userService.registerUser(this.registrationData)
