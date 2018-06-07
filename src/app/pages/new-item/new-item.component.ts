@@ -19,8 +19,8 @@ export class NewItemComponent {
     price: '',
     category_id: null,
     condition_id: null,
-    message: '',
   };
+  message: String = '';
   categories: Object = {};
   conditions: Object = {};
 
@@ -42,7 +42,7 @@ export class NewItemComponent {
     const valuesArray = [itemData['description'], itemData['category_id'], itemData['condition_id']];
 
     if (!this.validationService.fieldValidation(valuesArray)) {
-      return itemData['message'] = 'Description, category, and condition are required fields';
+      return this.message = 'Description, category, and condition are required fields';
     }
     const form = document.querySelector('form');
     const formData = new FormData(form);
@@ -58,5 +58,4 @@ export class NewItemComponent {
         return;
       });
   }
-
 }
