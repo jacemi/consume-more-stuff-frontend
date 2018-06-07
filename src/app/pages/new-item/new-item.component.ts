@@ -51,7 +51,7 @@ export class NewItemComponent {
 
     this.itemService.publishItem(formData)
       .then((data) => {
-        return this.router.navigateByUrl('/');
+        return this.router.navigateByUrl('/user');
       })
       .catch((err) => {
         console.log(err);
