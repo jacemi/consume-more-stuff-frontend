@@ -3,6 +3,7 @@
     <a routerLink="/">Home</a>
   </h3>
 
+
   <h3 id="userLink" *ngIf="loginData.online">
     <a routerLink="/user">User</a>
   </h3>
@@ -24,4 +25,7 @@
       </h4>
     </li>
   </ul>
+  <h3 id="allItemsLink">
+    <a routerLink="/items/all">All Items</a>
+  </h3>
 </div>

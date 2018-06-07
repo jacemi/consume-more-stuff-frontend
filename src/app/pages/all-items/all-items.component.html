@@ -1,0 +1,11 @@
+<div id="allWrap">
+  <div class="categoryWrap" *ngFor="let category of categoriesWithItems.categories">
+    <h2>{{category.name}}</h2>
+    <div class="itemCard" *ngFor="let item of category.items">
+      <a routerLink="/items/{{item.id}}">
+        <h4>Description: {{item.description}}</h4>
+        <h4>Published on: {{item.created_at}}</h4>
+      </a>
+    </div>
+  </div>
+</div>

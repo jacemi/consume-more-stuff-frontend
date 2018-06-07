@@ -11,7 +11,9 @@ export class CategoriesService {
   categories: Object = {
     categories: []
   };
-
+  categoriesWithItems: Object = {
+    categories: []
+  };
   constructor(
     private http: HttpClient,
   ) {
@@ -19,12 +21,23 @@ export class CategoriesService {
   }
 
   fetchTopItemsByCategories() {
-    return this.http.get('/api/categories/items')
+    return this.http.get('/api/categories/items/featured')
       .toPromise()
       .then((categories: Array<any>) => {
 
         this.topItemsByCategories['categories'] = categories;
         return categories;
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  fetchAllItemsByCategories() {
+    return this.http.get('/api/categories/items')
+      .toPromise()
+      .then((categories: Array<any>) => {
+        this.categoriesWithItems['categories'] = categories;
       })
       .catch((err) => {
         throw err;

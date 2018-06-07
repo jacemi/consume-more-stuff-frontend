@@ -16,6 +16,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { DetailComponent } from './pages/detail/detail.component';
 import { UserComponent } from './pages/user/user.component';
+import { AllItemsComponent } from './pages/all-items/all-items.component';
 
 import { CategoriesService } from './services/categories/categories.service';
 import { ConditionsService } from './services/conditions/conditions.service';
@@ -25,8 +26,8 @@ import { ValidationService } from './services/validation/validation.service';
 import { StatusService } from './services/status/status.service';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { PhotoService } from './services/photo/photo.service';
-import { ItemFilterPipe } from './pipes/item-filter.pipe';
 
+import { ItemFilterPipe } from './pipes/item-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ItemFilterPipe } from './pipes/item-filter.pipe';
     DetailComponent,
     UserComponent,
     SettingsComponent,
-    ItemFilterPipe
+    AllItemsComponent,
+    ItemFilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -53,10 +55,11 @@ import { ItemFilterPipe } from './pipes/item-filter.pipe';
         { path: '', component: HomeComponent },
         { path: 'register', component: RegistrationComponent },
         { path: 'items/new', component: NewItemComponent },
+        { path: 'items/all', component: AllItemsComponent },
         { path: 'items/:id', component: DetailComponent },
         { path: 'categories/:id', component: CategoryComponent },
         { path: 'user', component: UserComponent },
-        { path: 'user/settings', component: SettingsComponent }
+        { path: 'user/settings', component: SettingsComponent },
       ]
     )
   ],
