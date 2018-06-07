@@ -40,7 +40,7 @@ export class LoginComponent {
 
     return this.userService.loginUser(loginData)
       .then(() => {
-        return this.router.navigateByUrl('/');
+        return this.router.navigateByUrl('/user');
       })
       .catch((err) => {
         console.log(err);
