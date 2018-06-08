@@ -29,6 +29,8 @@ import { PhotoService } from './services/photo/photo.service';
 
 import { ItemFilterPipe } from './pipes/item-filter.pipe';
 
+import { PasswordCheckDirective } from './password-check.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +47,7 @@ import { ItemFilterPipe } from './pipes/item-filter.pipe';
     SettingsComponent,
     AllItemsComponent,
     ItemFilterPipe,
+    PasswordCheckDirective,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,7 @@ import { ItemFilterPipe } from './pipes/item-filter.pipe';
     UserService,
     ValidationService,
     StatusService,
-    PhotoService
+    PhotoService,
   ],
   bootstrap: [AppComponent]
 })
