@@ -1,45 +1,65 @@
 <h2>Publish New Item:</h2>
 
-<form id="newItemForm">
-  <label for="description">Description: </label>
-  <input type="text" name="description" placeholder="Input description here" [(ngModel)]="itemData.description"> *
-  <br>
+<form #newItemForm="ngForm">
+  <div class="formGroup">
+    <label for="description">Description: </label>
+    <input id="description" type="text" name="description" placeholder="Input description here" [(ngModel)]="itemData.description"
+      required maxlength="255" #description="ngModel">
+    <div class="errorMessage" [hidden]="description.valid || description.pristine">
+      Description is required and cannot be over 255 characters.
+    </div>
+  </div>
 
-  <label for="dimensions">Dimensions: </label>
-  <input type="text" name="dimensions" placeholder="Input dimensions here" [(ngModel)]="itemData.dimensions">
-  <br>
+  <div class="formGroup">
+    <label for="dimensions">Dimensions: </label>
+    <input id="dimensions" type="text" name="dimensions" placeholder="Input dimensions here" [(ngModel)]="itemData.dimensions"
+      maxlength="255">
+  </div>
 
-  <label for="manufacturer">Manufacturer: </label>
-  <input type="text" name="manufacturer" placeholder="Input manufacturer here" [(ngModel)]="itemData.manufacturer">
-  <br>
+  <div class="formGroup">
+    <label for="manufacturer">Manufacturer: </label>
+    <input id="manufacturer" type="text" name="manufacturer" placeholder="Input manufacturer here" [(ngModel)]="itemData.manufacturer"
+      maxlength="255">
 
-  <label for="model">Model: </label>
-  <input type="text" name="model" placeholder="Input model here" [(ngModel)]="itemData.model">
-  <br>
+  </div>
 
-  <label for="price">Price: </label>
-  <input type="text" name="price" placeholder="Input price here" [(ngModel)]="itemData.price">
-  <br>
+  <div class="formGroup">
+    <label for="model">Model: </label>
+    <input type="text" name="model" placeholder="Input model here" [(ngModel)]="itemData.model" maxlength="255">
+  </div>
 
-  <label for="category_id">Category: </label>
-  <select name="category_id" id="newCategory" [(ngModel)]="itemData.category_id">
-    <option [ngValue]=null selected>Select category</option>
-    <option *ngFor="let category of categories.categories" value={{category.id}}>{{ category.name }}</option>
-  </select>
-  <br>
+  <div class="formGroup">
+    <label for="price">Price: </label>
+    <input id="model" type="text" name="price" placeholder="Input price here" [(ngModel)]="itemData.price">
+    <br>
+  </div>
 
-  <label for="condition_id">Condition: </label>
-  <select required name="condition_id" id="newCondition" [(ngModel)]="itemData.condition_id">
-    <option [ngValue]=null selected>Select condition</option>
-    <option *ngFor="let condition of conditions.conditions" value={{condition.id}}>{{ condition.name }}</option>
-  </select>
-  <br>
+  <div class="formGroup">
+    <label for="category_id">Category: </label>
+    <select name="category_id" id="category_id" [(ngModel)]="itemData.category_id" required #categoryId="ngModel">
+      <option [ngValue]=null selected>Select category</option>
+      <option *ngFor="let category of categories.categories" value={{category.id}}>{{ category.name }}</option>
+    </select>
+    <div class="errorMessage" [hidden]="categoryId.valid">
+      Category is required.
+    </div>
+  </div>
 
-  <label for="photos">Photo: </label>
-  <input type="file" name="photos" [(ngModel)]="itemData.photo" accept=".jpg, .jpeg, .png" multiple>
-  <br>
+  <div class="formGroup">
+    <label for="condition_id">Condition: </label>
+    <select required name="condition_id" id="condition_id" [(ngModel)]="itemData.condition_id" required #conditionId="ngModel">
+      <option [ngValue]=null selected>Select condition</option>
+      <option *ngFor="let condition of conditions.conditions" value={{condition.id}}>{{ condition.name }}</option>
+    </select>
+    <div class="errorMessage" [hidden]="conditionId.valid">
+      Condition is required.
+    </div>
+  </div>
 
-  <div id="message">{{message}}</div>
+  <div class="formGroup">
+    <label for="photos">Photo: </label>
+    <input type="file" name="photos" [(ngModel)]="itemData.photo" accept=".jpg, .jpeg, .png" multiple>
+  </div>
 
-  <button (click)="submitNewItem($event)">Submit</button>
+  <button [disabled]="!newItemForm.valid" (click)="submitNewItem($event)">Submit</button>
 </form>
