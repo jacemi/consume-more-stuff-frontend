@@ -1,0 +1,14 @@
+#updatePasswordWrapper {
+  padding:15px;
+  #updatePasswordForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+  }
+
+  .passwordUpdateInput {
+    width: 100%;
+    border: 1px solid black;
+  }
+}

@@ -1,24 +1,24 @@
-<h2>Update password:</h2>
-<form>
-  <label for="email">Email: </label>
-  <input type="text" name="email" placeholder="Input email here" [(ngModel)]="passwordUpdateData.email">
-  <br>
+<div id="updatePasswordWrapper">
 
-  <label for="password">Current password: </label>
-  <input type="password" name="password" placeholder="Input password here" [(ngModel)]="passwordUpdateData.password">
-  <br>
+  <div class="subtitle">Update password:</div>
 
-  <label for="password">New password: </label>
-  <input type="password" name="password" placeholder="Input password here" [(ngModel)]="passwordUpdateData.newPassword">
-  <br>
-
-  <label for="confirmPassword">Confirm new password: </label>
-  <input type="password" name="confirmPassword" placeholder="Confirm password here" [(ngModel)]="passwordUpdateData.confirmNewPassword">
-  <br>
-
-
-
-  <button (click)="submitPasswordUpdate($event)">Submit</button>
-</form>
-
-<div>{{message}}</div>
+  <form id="updatePasswordForm">
+    <label for="email">Email: </label>
+    <input class="passwordUpdateInput" type="text" name="email" placeholder="Input email here" [(ngModel)]="passwordUpdateData.email">
+    <br>
+  
+    <label for="password">Current password: </label>
+    <input class="passwordUpdateInput" type="password" name="password" placeholder="Input password here" [(ngModel)]="passwordUpdateData.password">
+    <br>
+  
+    <label for="password">New password: </label>
+    <input class="passwordUpdateInput" type="password" name="password" placeholder="Input password here" [(ngModel)]="passwordUpdateData.newPassword">
+    <br>
+  
+    <label for="confirmPassword">Confirm new password: </label>
+    <input class="passwordUpdateInput" type="password" name="confirmPassword" placeholder="Confirm password here" [(ngModel)]="passwordUpdateData.confirmNewPassword">
+    <br>
+    <button (click)="submitPasswordUpdate($event)">Submit</button>
+  </form>
+  <div>{{message}}</div>
+</div>
