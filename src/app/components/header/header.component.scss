@@ -1,11 +1,19 @@
 #headerWrap{
   display: flex;
   flex-direction: row;
-
+  justify-content: space-between;
   background-color: steelblue;
-  
-  #appTitle{
-    font-size: 80px;
-    color: white;
+
+  #titleWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .appTitle{
+      font-size: 45px; 
+      color: white;
+      text-shadow: 2px 2px black;
+    }
   }
 }

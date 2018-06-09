@@ -21,4 +21,15 @@ export class SidebarComponent {
 
   categories: Object = {};
   loginData: Object = {};
+  showCategories: Boolean = false;
+
+  categoryEnter(event) {
+    event.preventDefault();
+    this.showCategories = true;
+  }
+
+  categoryLeave(event) {
+    event.preventDefault();
+    this.showCategories = false;
+  }
 }
