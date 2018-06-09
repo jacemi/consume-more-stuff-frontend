@@ -1,14 +1,23 @@
 <div id="allWrap">
+
   <div class="categoryWrap" *ngFor="let category of categoriesWithItems.categories">
-    <h2>{{category.name}}</h2>
+
+    <div class="subtitle">{{category.name}}</div>
+
     <div class="itemCard" *ngFor="let item of category.items">
+
       <a routerLink="/items/{{item.id}}">
-        <h4>Description: {{item.description}}</h4>
-        <h4>Published on: {{item.created_at}}</h4>
-        <div *ngIf="item.photos.length">
-            <img class="itemPhotos" src={{item.photos[0].url}} >
-          </div>
+
+        <img *ngIf="item.photos.length" class="itemPhotos" src={{item.photos[0].url}}>
+        <img *ngIf="!item.photos.length" class=itemPhotos src="../../../assets/photo-camera.svg">
+
+        <div class="textWrap">
+          <div class="itemDescription">{{item.description}}</div>
+          <div class="itemCreatedAt">{{item.created_at}}</div>
+        </div>
+
       </a>
+
     </div>
   </div>
 </div>
