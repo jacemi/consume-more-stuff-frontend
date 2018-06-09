@@ -31,16 +31,20 @@ export class LoginComponent {
     const loginData = this.loginData;
 
     if (!loginData['email'].trim().length) {
-      return loginData['message'] = 'Please input an email address.';
+      return this.message = 'Please input an email address.';
     }
 
     if (!loginData['password'].trim().length) {
-      return loginData['message'] = 'Please input a password.';
+      return this.message = 'Please input a password.';
     }
 
     return this.userService.loginUser(loginData)
-      .then(() => {
-        return this.router.navigateByUrl('/user');
+      .then((response) => {
+        if (response['message']) {
+          this.message = response['message'];
+        } else {
+          return this.router.navigateByUrl('/user');
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -50,7 +54,6 @@ export class LoginComponent {
 
   logoutUser(event) {
     event.preventDefault();
-
     this.userService.logoutUser();
   }
 }

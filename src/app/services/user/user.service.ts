@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   constructor(
+    private router: Router,
     private http: HttpClient,
   ) {
     this.getUser();
@@ -44,7 +46,6 @@ export class UserService {
           error['status'] = 500;
           throw error;
         }
-
         return user;
       })
       .catch((err) => {
@@ -56,7 +57,6 @@ export class UserService {
     this.user['online'] = true;
     this.user['id'] = data['id'];
     this.user['email'] = data['email'];
-
     localStorage.setItem('user', JSON.stringify(this.user));
     return data;
   }
@@ -65,8 +65,11 @@ export class UserService {
     return this.http.post('/api/users/login', data)
       .toPromise()
       .then((user) => {
-        console.log('Logged in...');
-        return this.setUser(user);
+        if (user['message']) {
+          return user;
+        } else {
+          return this.setUser(user);
+        }
       })
       .catch((err) => {
         throw err;
@@ -81,6 +84,7 @@ export class UserService {
       .toPromise()
       .then(() => {
         localStorage.removeItem('user');
+        this.router.navigateByUrl('/');
       })
       .catch((err) => {
         console.log(err);
