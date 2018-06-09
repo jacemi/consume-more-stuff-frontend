@@ -1,8 +1,8 @@
-<div class="itemPhotoContainer" *ngFor="let photo of item.itemData.photos" >
-    <img class="itemPhotos" src={{photo.url}} >
-      <button (click)="deletePhoto(photo)">Delete</button>
-    </div>
-    
+<div class="itemPhotoContainer" *ngFor="let photo of item.itemData.photos">
+  <img class="itemPhotos" src={{photo.url}}>
+  <button (click)="deletePhoto(photo)">Delete</button>
+</div>
+
 
 <div *ngIf="!editMode || !author" id="detailCardWrap">
   <h2>Description: {{item.itemData.description}}</h2>
@@ -14,58 +14,74 @@
   <h4>Dimensions: {{item.itemData.dimensions}}</h4>
   <h4>Published: {{item.itemData.created_at}}</h4>
   <h4>Updated: {{item.itemData.updated_at}}</h4>
-  <h4>Detail: {{item.itemData.detail}}</h4>
+  <h4>Detail: {{item.itemData.details}}</h4>
 </div>
 
-<form *ngIf="author && editMode">
-  <label for="description">Description: </label>
-  <input name="description" type="text" [(ngModel)]="item.itemData.description">
-  <br>
+<form *ngIf="author && editMode" #editItemForm="ngForm">
 
-  <label for="manufacturer">Manufacturer: </label>
-  <input name="manufacturer" type="text" [(ngModel)]="item.itemData.manufacturer">
-  <br>
+  <div class="formGroup">
+    <label for="description">Description: </label>
+    <input id="description" name="description" type="text" placeholder="Input description here" [(ngModel)]="item.itemData.description"
+      required maxlength="255" #description="ngModel">
+    <div class="errorMessage" [hidden]="description.valid || description.pristine">
+      Description is required and cannot be over 255 characters.
+    </div>
+  </div>
 
-  <label for="model">Model: </label>
-  <input name="model" type="text" [(ngModel)]="item.itemData.model">
-  <br>
+  <div class="formGroup">
+    <label for="manufacturer">Manufacturer: </label>
+    <input id="manufacturer" type="text" name="manufacturer" placeholder="Input manufacturer here" [(ngModel)]="item.itemData.manufacturer"
+      maxlength="255">
+  </div>
 
-  <label for="price">Price: </label>
-  <input name="price" type="text" [(ngModel)]="item.itemData.price">
-  <br>
+  <div class="formGroup">
+    <label for="model">Model: </label>
+    <input type="text" name="model" placeholder="Input model here" [(ngModel)]="item.itemData.model" maxlength="255">
+  </div>
 
-  <label for="category">Category: </label>
-  <select name="category_id" [(ngModel)]="item.itemData.category.id">
-    <option *ngFor="let category of dropdown.categories.categories" value={{category.id}}>{{category.name}}</option>
-  </select>
-  <br>
+  <div class="formGroup">
+    <label for="price">Price: </label>
+    <input id="model" type="text" name="price" placeholder="Input price here" [(ngModel)]="item.itemData.price">
+  </div>
 
-  <label for="condition">Condition: </label>
-  <select name="condition_id" [(ngModel)]="item.itemData.condition.id">
-    <option *ngFor="let condition of dropdown.conditions.conditions" value={{condition.id}}>{{condition.name}}</option>
-  </select>
-  <br>
+  <div class="formGroup">
+    <label for="category">Category: </label>
+    <select id="category_id" name="category_id" [(ngModel)]="item.itemData.category.id" required>
+      <option *ngFor="let category of dropdown.categories.categories" value={{category.id}}>{{category.name}}</option>
+    </select>
+  </div>
 
-  <label for="status">Status: </label>
-  <select name="status_id" [(ngModel)]="item.itemData.status.id">
-    <option *ngFor="let status of dropdown.status.status" value={{status.id}}>{{status.name}}</option>
-  </select>
-  <br>
+  <div class="formGroup">
+    <label for="condition">Condition: </label>
+    <select id="condition_id" name="condition_id" [(ngModel)]="item.itemData.condition.id" required>
+      <option *ngFor="let condition of dropdown.conditions.conditions" value={{condition.id}}>{{condition.name}}</option>
+    </select>
+  </div>
 
-  <label for="dimensions">Dimensions: </label>
-  <input name="dimensions" type="text" [(ngModel)]="item.itemData.dimensions">
-  <br>
+  <div class="formGroup">
+    <label for="status">Status: </label>
+    <select id="status_id" name="status_id" [(ngModel)]="item.itemData.status.id" required>
+      <option *ngFor="let status of dropdown.status.status" value={{status.id}}>{{status.name}}</option>
+    </select>
+  </div>
 
-  <label for="detail">Details: </label>
-  <input name="detail" type="text" [(ngModel)]="item.itemData.detail">
-  <br>
+  <div class="formGroup">
+    <label for="dimensions">Dimensions: </label>
+    <input id="dimensions" type="text" name="dimensions" placeholder="Input dimensions here" [(ngModel)]="item.itemData.dimensions"
+      maxlength="255">
+  </div>
 
-  <label for="photos">Photo: </label>
-  <input type="file" name="photos" [(ngModel)]="item.itemData.photo" accept=".jpg, .jpeg, .png" multiple>
-  <br>
-  <button (click)="submitEditItem($event)">Submit</button>
+  <div class="formGroup">
+    <label for="details">Details: </label>
+    <input id="details" name="details" type="text" placeholder="Input details here" [(ngModel)]="item.itemData.detail" maxlength="10000">
+  </div>
+
+  <div class="formGroup">
+    <label for="photos">Photo: </label>
+    <input type="file" name="photos" [(ngModel)]="item.itemData.photo" accept=".jpg, .jpeg, .png" multiple>
+  </div>
+
+  <button [disabled]="!editItemForm.valid" (click)="submitEditItem($event)">Submit</button>
 </form>
 
 <button *ngIf="author" (click)="toggleEditMode($event)">Edit</button>
-
-<div>{{message}}</div>

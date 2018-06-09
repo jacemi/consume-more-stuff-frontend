@@ -1,15 +1,27 @@
-<form *ngIf="!loginData.online">
-  <label for="email">Email: </label>
-  <input type="text" name="email" placeholder="Input email here" [(ngModel)]="loginData.email">
-  <br>
+<form *ngIf="!loginData.online" #loginForm="ngForm">
 
-  <label for="password">Password: </label>
-  <input type="password" name="password" placeholder="Input password here" [(ngModel)]="loginData.password">
-  <br>
-  <div>{{message}}</div>
+  <div class="formGroup">
+    <label for="email">Email: </label>
+    <input id="email" type="text" name="email" placeholder="Input email here" [(ngModel)]="loginData.email" required email="true"
+      #email="ngModel">
+    <div class="errorMessage" [hidden]="email.valid || email.pristine">
+      Use a valid email address. (example@example.com)
+    </div>
+  </div>
 
-  <button (click)="loginUser($event)">Login</button>
+  <div class="formGroup">
+    <label for="password">Password: </label>
+    <input id="password" type="password" name="password" placeholder="Input password here" [(ngModel)]="loginData.password" required
+      minlength="8" #password="ngModel">
+    <div [hidden]="password.valid || password.pristine" class="errorMessage">
+      Password must be at least 8 characters.
+    </div>
+  </div>
+
+  <button [disabled]="!loginForm.valid" (click)="loginUser($event)">Login</button>
 </form>
+
+
 <button *ngIf="!loginData.online" routerLink="/register">Register</button>
 
 <div *ngIf="loginData.online">
