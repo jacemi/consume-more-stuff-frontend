@@ -5,6 +5,9 @@
       <a routerLink="/items/{{item.id}}">
         <h4>Description: {{item.description}}</h4>
         <h4>Published on: {{item.created_at}}</h4>
+        <div *ngIf="item.photos.length">
+            <img class="itemPhotos" src={{item.photos[0].url}} >
+          </div>
       </a>
     </div>
   </div>
