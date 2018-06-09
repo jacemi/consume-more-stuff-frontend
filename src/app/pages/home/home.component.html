@@ -1,17 +1,27 @@
 <div id="homeWrap">
+  <div id="filterForm">
     <label for="searchText">Search item descriptions: </label>
-    <input [(ngModel)]="searchText" name="searchText"
-    placeholder="search text goes here">
-    <div class="categoryWrap" *ngFor="let category of categories.categories">
-      <h2>{{category.name}}</h2>
-      <div class="itemCard" *ngFor="let item of category.items | filter : searchText">
-        <a routerLink="/items/{{item.id}}">
-          <h4>Description: {{item.description}}</h4>
-          <h4>Published on: {{item.created_at}}</h4>
-          <div *ngIf="item.photos.length">
-            <img class="itemPhotos" src={{item.photos[0].url}} >
-          </div>
-        </a>
-      </div>
+    <input [(ngModel)]="searchText" name="searchText" placeholder="Search items by description">
+  </div>
+
+  <div class="categoryWrap" *ngFor="let category of categories.categories">
+
+    <div class="subtitle">{{category.name}}</div>
+
+    <div class="itemCard" *ngFor="let item of category.items | filter : searchText">
+
+      <a routerLink="/items/{{item.id}}">
+
+        <img *ngIf="item.photos.length" class="itemPhotos" src={{item.photos[0].url}}>
+        <img *ngIf="!item.photos.length" class=itemPhotos src="../../../assets/photo-camera.svg">
+
+        <div class="textWrap">
+          <div class="itemDescription">{{item.description}}</div>
+          <div class="itemCreatedAt">{{item.created_at}}</div>
+        </div>
+
+      </a>
+
     </div>
   </div>
+</div>
