@@ -1,0 +1,43 @@
+.statusWrap{
+  margin: 30px 0;
+}
+
+.subtitle{
+  font-size: 48px;
+  text-align: center; 
+}
+
+.itemCard{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 350px;
+  
+  padding: 10px 0;
+
+  box-shadow: 2px 4px 9px #888888;
+
+  a{
+  color: black;
+  text-decoration: none;
+  }
+  .itemPhotos{
+    width: 300px;
+    height: 185px;
+  }
+  .textWrap{
+    margin: 10px 0;
+
+    .itemDescription{
+      font-size: 24px;
+    }
+    .itemCreatedAt{
+      font-size: 16px;
+    }
+  }
+}
+
+.itemCard:hover{
+  box-shadow: 5px 10px 18px #888888;
+}

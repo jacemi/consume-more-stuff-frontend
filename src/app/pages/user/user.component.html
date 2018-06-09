@@ -1,14 +1,22 @@
 <div id="userItemWrap">
+
   <div class="statusWrap" *ngFor="let status of status.status">
-    <h2>{{status.name}}</h2>
-    <div class="cardWrap" *ngFor="let item of filteredItems[status.id]">
+
+    <div class="subtitle">{{status.name}}</div>
+
+    <div class="itemCard" *ngFor="let item of filteredItems[status.id]">
       <a routerLink="/items/{{item.id}}">
-        <h4>{{item.description}}</h4>
-        <h4>{{item.created_at}}</h4>
-        <div *ngIf="item.photos.length">
-            <img class="itemPhotos" src={{item.photos[0].url}} >
-          </div>
+
+            <img *ngIf="item.photos.length" class="itemPhotos" src={{item.photos[0].url}} >
+            <img *ngIf="!item.photos.length" class=itemPhotos src="../../../assets/photo-camera.svg">
+
+        <div class="textWrap">
+          <div class="itemDescription">{{item.description}}</div>
+          <div class="itemCreatedAt">{{item.created_at}}</div>
+        </div>
+
       </a>
+      
     </div>
   </div>
 </div>
