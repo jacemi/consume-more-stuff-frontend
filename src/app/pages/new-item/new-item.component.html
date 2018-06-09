@@ -20,7 +20,6 @@
     <label for="manufacturer">Manufacturer: </label>
     <input id="manufacturer" type="text" name="manufacturer" placeholder="Input manufacturer here" [(ngModel)]="itemData.manufacturer"
       maxlength="255">
-
   </div>
 
   <div class="formGroup">
@@ -31,7 +30,6 @@
   <div class="formGroup">
     <label for="price">Price: </label>
     <input id="model" type="text" name="price" placeholder="Input price here" [(ngModel)]="itemData.price">
-    <br>
   </div>
 
   <div class="formGroup">
@@ -54,6 +52,11 @@
     <div class="errorMessage" [hidden]="conditionId.valid">
       Condition is required.
     </div>
+  </div>
+
+  <div class="formGroup">
+    <label for="details">Details: </label>
+    <input id="details" name="details" type="text" placeholder="Input details here" [(ngModel)]="itemData.detail" maxlength="10000">
   </div>
 
   <div class="formGroup">
