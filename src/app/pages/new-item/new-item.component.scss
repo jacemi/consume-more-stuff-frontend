@@ -1,0 +1,15 @@
+#newItemFormWrap {
+  padding:15px;
+  #newItemForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+  }
+
+
+  .newFormInput{
+    width: 100%;
+    border: 1px solid black;
+  }
+}
