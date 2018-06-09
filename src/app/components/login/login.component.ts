@@ -30,19 +30,12 @@ export class LoginComponent {
 
     const loginData = this.loginData;
 
-    if (!loginData['email'].trim().length) {
-      return this.message = 'Please input an email address.';
-    }
-
-    if (!loginData['password'].trim().length) {
-      return this.message = 'Please input a password.';
-    }
-
     return this.userService.loginUser(loginData)
       .then((response) => {
         if (response['message']) {
           this.message = response['message'];
         } else {
+          this.message = '';
           return this.router.navigateByUrl('/user');
         }
       })
