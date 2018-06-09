@@ -1,21 +1,36 @@
-<h2>Register:</h2>
+<div id="registerPageWrap">
 
-<form>
-  <label for="email">Email: </label>
-  <input type="text" name="email" placeholder="Input email here" [(ngModel)]="registrationData.email">
-  <br>
+  <h2 class="pageTitle">Registration</h2>
 
-  <label for="password">Password: </label>
-  <input type="password" name="password" placeholder="Input password here" [(ngModel)]="registrationData.password">
-  <br>
+  <form #registerForm="ngForm">
 
-  <label for="confirmPassword">Confirm password: </label>
-  <input type="password" name="confirmPassword" placeholder="Confirm password here" [(ngModel)]="registrationData.confirmPassword">
-  <br>
+    <div class="formGroup">
+      <label for="email">Email: </label>
+      <input id="email" type="text" name="email" placeholder="Input email here" [(ngModel)]="registrationData.email" required email="true"
+        #email="ngModel">
+      <div class="errorMessage" [hidden]="email.valid || email.pristine">
+        Use a valid email address. (example@example.com)
+      </div>
+    </div>
 
+    <div class="formGroup">
+      <label for="password">Password: </label>
+      <input id="password" type="password" name="password" placeholder="Input password here" [(ngModel)]="registrationData.password"
+        required minlength="8" #password="ngModel">
+      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+        Password must be at least 8 characters.
+      </div>
+    </div>
 
+    <div class="formGroup">
+      <label for="confirmPassword">Confirm password: </label>
+      <input type="password" name="confirmPassword" placeholder="Confirm password here" [(ngModel)]="registrationData.confirmPassword"
+        required appPasswordCheck="password" #confirmPassword="ngModel">
+      <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="alert alert-danger">
+        Passwords must match.
+      </div>
+    </div>
 
-  <button (click)="submitRegistration($event)">Submit</button>
-</form>
-
-<div>{{message}}</div>
+    <button [disabled]="!registerForm.valid" (click)="submitRegistration($event)">Submit</button>
+  </form>
+</div>

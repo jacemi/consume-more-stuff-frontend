@@ -14,7 +14,6 @@ export class RegistrationComponent {
     password: '',
     confirmPassword: '',
   };
-  message: String = '';
 
   constructor(
     private router: Router,
@@ -24,27 +23,6 @@ export class RegistrationComponent {
 
   submitRegistration(event) {
     event.preventDefault();
-
-    const registrationData = this.registrationData;
-
-    let email = registrationData['email'];
-    if (email.length) {
-      email = email.trim();
-    }
-
-    const valuesArray = [registrationData['email'], registrationData['password'], registrationData['confirmPassword']];
-
-    if (!this.validationService.fieldValidation(valuesArray)) {
-      return this.message = 'Please fill out the entire form';
-    }
-
-    if (!this.validationService.emailValidation(email)) {
-      return this.message = 'Please enter a valid email address';
-    }
-
-    if (registrationData['password'] !== registrationData['confirmPassword']) {
-      return this.message = 'Please check that both password fields match';
-    }
 
     this.userService.registerUser(this.registrationData)
       .then((data) => {
